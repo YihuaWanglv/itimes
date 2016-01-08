@@ -2,6 +2,7 @@ package com.iyihua.itimes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * Hello world!
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 //@EnableAutoConfiguration
 @SpringBootApplication
+@ImportResource("beans.xml")
 public class App 
 {
 	public static void main(String[] args) throws Exception {

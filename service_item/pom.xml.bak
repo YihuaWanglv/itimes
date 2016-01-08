@@ -2,26 +2,25 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.iyihua</groupId>
-		<artifactId>module_base</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
-
+	<groupId>com.iyihua</groupId>
 	<artifactId>service_item</artifactId>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
+
 	<name>itimes_service_item</name>
 	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.2.5.RELEASE</version>
+	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -31,7 +30,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- 
 		<dependency>
+	      	<groupId>org.mybatis.spring.boot</groupId>
+	      	<artifactId>mybatis-spring-boot-starter</artifactId>
+	      	<version>1.0.1-SNAPSHOT</version>
+	    </dependency>
+		 -->
+	    <dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.2.3</version>
