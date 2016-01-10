@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 //@EnableAutoConfiguration
 @SpringBootApplication
-@ImportResource("beans.xml")
+@ImportResource("classpath:dubbo.xml")
 public class App 
 {
 	public static void main(String[] args) throws Exception {

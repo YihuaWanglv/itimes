@@ -23,7 +23,8 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private Integer type;
 
-	protected User() {
+	public User() {
+		super();
 	}
 
 	public User(Long id, String name, Integer type) {

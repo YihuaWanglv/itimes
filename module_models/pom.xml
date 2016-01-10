@@ -5,9 +5,9 @@
 		<groupId>com.iyihua</groupId>
 		<artifactId>root</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../..</relativePath>
 	</parent>
 	<artifactId>module_models</artifactId>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		

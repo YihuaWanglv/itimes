@@ -10,5 +10,5 @@ public interface UserRemote {
 	
 	public UserDTO createUser(UserDTO user);
 	
-	public boolean updateUser(UserDTO user); 
+	public void deleteUser(Long id); 
 }

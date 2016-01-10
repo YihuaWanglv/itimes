@@ -16,17 +16,17 @@ public class Item implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long item_id;
+	private Long itemId;
 	@Column(nullable = false)
-	private Long user_id;
+	private Long userId;
 	@Column(nullable = false)
 	private Date date;
 	@Column(nullable = false)
-	private Long category_id;
+	private Long categoryId;
 	@Column
-	private Long location_id;
+	private Long locationId;
 	@Column(nullable = false)
-	private Long project_id;
+	private Long projectId;
 	@Column
 	private String description;
 	@Column
@@ -42,28 +42,28 @@ public class Item implements Serializable {
 	@Column
 	private String week;
 	@Column
-	private String user_name;
+	private String userName;
 	@Column
-	private String category_name;
+	private String categoryName;
 	@Column
-	private String project_name;
+	private String projectName;
 	@Column
-	private String location_name;
+	private String locationName;
 
 	public Item() {
 		super();
 	}
 
-	public Item(Long item_id, Long user_id, Date date, Long category_id, Long location_id, Long project_id,
+	public Item(Long itemId, Long userId, Date date, Long categoryId, Long locationId, Long projectId,
 			String description, String tags, BigDecimal duration, String year, String month, String day, String week,
-			String user_name, String category_name, String project_name, String location_name) {
+			String userName, String categoryName, String projectName, String locationName) {
 		super();
-		this.item_id = item_id;
-		this.user_id = user_id;
+		this.itemId = itemId;
+		this.userId = userId;
 		this.date = date;
-		this.category_id = category_id;
-		this.location_id = location_id;
-		this.project_id = project_id;
+		this.categoryId = categoryId;
+		this.locationId = locationId;
+		this.projectId = projectId;
 		this.description = description;
 		this.tags = tags;
 		this.duration = duration;
@@ -71,35 +71,35 @@ public class Item implements Serializable {
 		this.month = month;
 		this.day = day;
 		this.week = week;
-		this.user_name = user_name;
-		this.category_name = category_name;
-		this.project_name = project_name;
-		this.location_name = location_name;
+		this.userName = userName;
+		this.categoryName = categoryName;
+		this.projectName = projectName;
+		this.locationName = locationName;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [item_id=" + item_id + ", user_id=" + user_id + ", date=" + date + ", category_id=" + category_id
-				+ ", location_id=" + location_id + ", project_id=" + project_id + ", description=" + description
-				+ ", tags=" + tags + ", duration=" + duration + ", year=" + year + ", month=" + month + ", day=" + day
-				+ ", week=" + week + ", user_name=" + user_name + ", category_name=" + category_name + ", project_name="
-				+ project_name + ", location_name=" + location_name + "]";
+		return "Item [itemId=" + itemId + ", userId=" + userId + ", date=" + date + ", categoryId=" + categoryId
+				+ ", locationId=" + locationId + ", projectId=" + projectId + ", description=" + description + ", tags="
+				+ tags + ", duration=" + duration + ", year=" + year + ", month=" + month + ", day=" + day + ", week="
+				+ week + ", userName=" + userName + ", categoryName=" + categoryName + ", projectName=" + projectName
+				+ ", locationName=" + locationName + "]";
 	}
 
-	public Long getItem_id() {
-		return item_id;
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setItem_id(Long item_id) {
-		this.item_id = item_id;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public Date getDate() {
@@ -110,28 +110,36 @@ public class Item implements Serializable {
 		this.date = date;
 	}
 
-	public Long getCategory_id() {
-		return category_id;
+	public Long getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory_id(Long category_id) {
-		this.category_id = category_id;
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
-	public Long getLocation_id() {
-		return location_id;
+	public Long getLocationId() {
+		return locationId;
 	}
 
-	public void setLocation_id(Long location_id) {
-		this.location_id = location_id;
+	public void setLocationId(Long locationId) {
+		this.locationId = locationId;
 	}
 
-	public Long getProject_id() {
-		return project_id;
+	public Long getProjectId() {
+		return projectId;
 	}
 
-	public void setProject_id(Long project_id) {
-		this.project_id = project_id;
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getTags() {
@@ -182,44 +190,36 @@ public class Item implements Serializable {
 		this.week = week;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getCategory_name() {
-		return category_name;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
-	public String getProject_name() {
-		return project_name;
+	public String getProjectName() {
+		return projectName;
 	}
 
-	public void setProject_name(String project_name) {
-		this.project_name = project_name;
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
-	public String getLocation_name() {
-		return location_name;
+	public String getLocationName() {
+		return locationName;
 	}
 
-	public void setLocation_name(String location_name) {
-		this.location_name = location_name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
 	}
 
 }
