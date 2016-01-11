@@ -8,20 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iyihua.itimes.mapper.SuperItemMapper;
-import com.iyihua.itimes.mapper.ItemMapper;
 import com.iyihua.itimes.model.Category;
 import com.iyihua.itimes.model.Item;
 import com.iyihua.itimes.model.User;
-import com.iyihua.itimes.repository.ItemRepository;
-import com.iyihua.itimes.service.ItemService;
 import com.iyihua.itimes.service.MyService;
-import com.iyihua.model.base.ItemDTO;
-import com.iyihua.model.base.UserDTO;
 import com.iyihua.model.query.UserItemQueryDTO;
 import com.iyihua.remote.base.ItemRemote;
-import com.iyihua.remote.base.UserRemote;
 
-@Controller
+//@Controller
 public class SampleController {
 
 	@Autowired
@@ -36,8 +30,8 @@ public class SampleController {
 	@Autowired
 	SuperItemMapper superItemMapper;
 	
-	@RequestMapping("/")
-	@ResponseBody
+//	@RequestMapping("/")
+//	@ResponseBody
 	String home() {
 		String data = "";
 		

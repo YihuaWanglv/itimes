@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.DynamicInsert;
+
 @Entity
+@DynamicInsert
 public class Category implements Serializable {
 
 	private static final long serialVersionUID = 7525327812218240002L;
@@ -18,7 +21,7 @@ public class Category implements Serializable {
 	private Long userId;
 	@Column(nullable = false)
 	private String categoryName;
-	@Column(nullable = false)
+	@Column
 	private Integer categoryType;
 	@Column
 	private Long parentId;
@@ -72,6 +75,14 @@ public class Category implements Serializable {
 
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

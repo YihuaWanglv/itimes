@@ -46,5 +46,9 @@ public class SuperItemMapper {
 	public List<Item> findItemsByParams(UserItemQueryDTO query) {
 		return this.sqlSessionTemplate.selectList("findItemsByParams", query);
 	}
+	
+	public int countItemsByParams(UserItemQueryDTO query) {
+		return this.sqlSessionTemplate.selectOne("countItemsByParams", query);
+	}
 
 }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+  </head>
+  <body ng-app="myApp">
+    <div class="container" ng-controller="CategoryController">
+      <div class="page-header">
+        <h1>Category manager</h1>
+        <a href="category.html">category</a>
+      </div>
+      <div class="alert alert-info" role="alert" ng-hide="categorys &amp;&amp; categorys.length > 0">
+        There are no categorys yet.
+      </div>
+      <form class="form-horizontal" role="form" ng-submit="addCategory(newCategory)">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="newCategory" placeholder="Enter a new category..." />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" ng-disabled="!newCategory" title="Add">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </div>
+        <hr />
+        <div class="form-group" ng-repeat="category in categorys">
+          <!--
+          <input type="text" class="form-control" ng-model="category.categoryName"/>
+          <span class="input-group-btn">
+            <button class="btn btn-success" type="button" title="Update" ng-click="updateCategory(category)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button class="btn btn-primary" type="button" title="Edit">
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <button class="btn btn-danger" type="button" title="Delete"
+              ng-click="deleteCategory(category)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </span>
+          -->
+
+          <div class="col-xs-9">
+            <label>
+              <input type="text" class="form-control" ng-model="category.categoryName"/>
+            </label>
+          </div>
+          <div class="col-xs-3">
+            <button class="pull-right btn btn-success" type="button" title="Update" ng-if="!edit" ng-click="changeButtonFlag();updateCategory(category)">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button class="pull-right btn btn-primary" type="button" title="Edit" ng-if="edit" ng-click="changeButtonFlag();">
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <button class="pull-right btn btn-danger" type="button" title="Delete"
+              ng-click="deleteCategory(category)" ng-if="edit">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </div>
+
+        </div>
+        
+      </form>
+    </div>
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./app/controllers.js"></script>
+    <script type="text/javascript" src="./app/services.js"></script>
+  </body>
+</html>

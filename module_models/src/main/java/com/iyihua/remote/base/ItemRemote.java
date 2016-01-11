@@ -9,14 +9,12 @@ import com.iyihua.model.query.UserItemQueryDTO;
 public interface ItemRemote {
 
 	List<ItemDTO> findItemsByUserId(Long userId);
-	
-	List<ItemDTO> findItemsByParams(ItemDTO item);
-	
+
 	List<ItemDTO> findItemsByQueryParams(UserItemQueryDTO query);
-	
+
 	Page<ItemDTO> findItemsByQueryParamsWithPage(UserItemQueryDTO query);
-	
+
 	ItemDTO saveItem(ItemDTO item);
-	
+
 	void deleteItem(Long itemId);
 }
