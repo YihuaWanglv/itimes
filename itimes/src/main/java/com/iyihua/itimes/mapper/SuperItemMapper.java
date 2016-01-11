@@ -16,20 +16,35 @@
 
 package com.iyihua.itimes.mapper;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.iyihua.itimes.model.Item;
+import com.iyihua.model.query.UserItemQueryDTO;
 
+/**
+ * 
+ * @ClassName: SuperItemMapper
+ * @Description: SuperItemMapper is for Item complex queries. If need simple crud opration for Item,
+ * 	look for ItemMapper or ItemRepository
+ * @author: wanglvyh@cf-ec.com
+ * @date: 2016年1月11日 上午11:05:33
+ */
 @Component
-public class ItemDao {
+public class SuperItemMapper {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public Item selectCityById(long id) {
-		return this.sqlSessionTemplate.selectOne("selectCityById", id);
+	public Item selectItemById(long id) {
+		return this.sqlSessionTemplate.selectOne("selectItemById", id);
+	}
+	
+	public List<Item> findItemsByParams(UserItemQueryDTO query) {
+		return this.sqlSessionTemplate.selectList("findItemsByParams", query);
 	}
 
 }

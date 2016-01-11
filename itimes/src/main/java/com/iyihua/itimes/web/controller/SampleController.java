@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.iyihua.itimes.mapper.ItemDao;
+import com.iyihua.itimes.mapper.SuperItemMapper;
 import com.iyihua.itimes.mapper.ItemMapper;
 import com.iyihua.itimes.model.Category;
 import com.iyihua.itimes.model.Item;
@@ -17,6 +17,7 @@ import com.iyihua.itimes.service.ItemService;
 import com.iyihua.itimes.service.MyService;
 import com.iyihua.model.base.ItemDTO;
 import com.iyihua.model.base.UserDTO;
+import com.iyihua.model.query.UserItemQueryDTO;
 import com.iyihua.remote.base.ItemRemote;
 import com.iyihua.remote.base.UserRemote;
 
@@ -33,7 +34,7 @@ public class SampleController {
 	ItemRemote itemService;
 	
 	@Autowired
-	ItemDao itemDao;
+	SuperItemMapper superItemMapper;
 	
 	@RequestMapping("/")
 	@ResponseBody
@@ -63,11 +64,16 @@ public class SampleController {
 //				data += i.getDescription();
 //			}
 //		}
-		Item item = new Item();
-		item.setUserId(1L);
-		Item i = itemDao.selectCityById(1L);
-		data += i.getDescription();
-		return "Hello World!" + data;
+		UserItemQueryDTO query = new UserItemQueryDTO();
+//		query.setCategoryId(1L);
+		query.setDateString("2016-01-10");
+		List<Item> items = superItemMapper.findItemsByParams(query);
+		if (items != null) {
+			for (Item i : items) {
+				data += "\n" + i.toString();				
+			}
+		}
+		return "Hello World!\n" + data;
 	}
 
 	

@@ -7,18 +7,18 @@ public class Page<T> implements Serializable {
 
 	private static final long serialVersionUID = -8110767556267656062L;
 
-	private int page = 1;
-	private int total;
-	private int size = 20;
-	private int max;
+	protected Integer page = -1;
+	protected Integer total;
+	protected Integer size = 20;
+	protected Integer max;
 	protected Integer start = 0;
-	private List<T> items;
+	protected List<T> items;
 
 	public Page() {
 		super();
 	}
 
-	public Page(int page, int total, int size, int max, Integer start, List<T> items) {
+	public Page(Integer page, Integer total, Integer size, Integer max, Integer start, List<T> items) {
 		super();
 		this.page = page;
 		this.total = total;
@@ -32,7 +32,13 @@ public class Page<T> implements Serializable {
 		return page;
 	}
 
-	public void setPage(int page) {
+	public void setPage(Integer page) {
+		if (page == null) {
+			return;
+		}
+		if (this.size > 0 && page > 0) {
+			this.start = (page-1) * this.size;
+		}
 		this.page = page;
 	}
 

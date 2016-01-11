@@ -14,7 +14,7 @@ public class ItemDTO implements Serializable {
 	private Long category_id;
 	private Long location_id;
 	private Long project_id;
-	private String description;
+	private String item;
 	private String tags;
 	private BigDecimal duration;
 	private String year;
@@ -25,14 +25,14 @@ public class ItemDTO implements Serializable {
 	private String category_name;
 	private String project_name;
 	private String location_name;
+	private String result;
 
 	public ItemDTO() {
 		super();
 	}
 
-	public ItemDTO(Long item_id, Long user_id, Date date, Long category_id, Long location_id, Long project_id,
-			String description, String tags, BigDecimal duration, String year, String month, String day, String week,
-			String user_name, String category_name, String project_name, String location_name) {
+	public ItemDTO(Long item_id, Long user_id, Date date, Long category_id, Long location_id, Long project_id, String item, String tags, BigDecimal duration, String year, String month, String day,
+			String week, String user_name, String category_name, String project_name, String location_name) {
 		super();
 		this.item_id = item_id;
 		this.user_id = user_id;
@@ -40,7 +40,7 @@ public class ItemDTO implements Serializable {
 		this.category_id = category_id;
 		this.location_id = location_id;
 		this.project_id = project_id;
-		this.description = description;
+		this.item = item;
 		this.tags = tags;
 		this.duration = duration;
 		this.year = year;
@@ -55,11 +55,9 @@ public class ItemDTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Item [item_id=" + item_id + ", user_id=" + user_id + ", date=" + date + ", category_id=" + category_id
-				+ ", location_id=" + location_id + ", project_id=" + project_id + ", description=" + description
-				+ ", tags=" + tags + ", duration=" + duration + ", year=" + year + ", month=" + month + ", day=" + day
-				+ ", week=" + week + ", user_name=" + user_name + ", category_name=" + category_name + ", project_name="
-				+ project_name + ", location_name=" + location_name + "]";
+		return "Item [item_id=" + item_id + ", user_id=" + user_id + ", date=" + date + ", category_id=" + category_id + ", location_id=" + location_id + ", project_id=" + project_id + ", item="
+				+ item + ", tags=" + tags + ", duration=" + duration + ", year=" + year + ", month=" + month + ", day=" + day + ", week=" + week + ", user_name=" + user_name + ", category_name="
+				+ category_name + ", project_name=" + project_name + ", location_name=" + location_name + "]";
 	}
 
 	public Long getItem_id() {
@@ -190,12 +188,20 @@ public class ItemDTO implements Serializable {
 		this.location_name = location_name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getItem() {
+		return item;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setItem(String item) {
+		this.item = item;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 }

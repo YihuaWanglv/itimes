@@ -28,7 +28,7 @@ public class Item implements Serializable {
 	@Column(nullable = false)
 	private Long projectId;
 	@Column
-	private String description;
+	private String item;
 	@Column
 	private String tags;
 	@Column(nullable = false)
@@ -49,13 +49,15 @@ public class Item implements Serializable {
 	private String projectName;
 	@Column
 	private String locationName;
+	@Column
+	private String result;
 
 	public Item() {
 		super();
 	}
 
 	public Item(Long itemId, Long userId, Date date, Long categoryId, Long locationId, Long projectId,
-			String description, String tags, BigDecimal duration, String year, String month, String day, String week,
+			String item, String tags, BigDecimal duration, String year, String month, String day, String week,
 			String userName, String categoryName, String projectName, String locationName) {
 		super();
 		this.itemId = itemId;
@@ -64,7 +66,7 @@ public class Item implements Serializable {
 		this.categoryId = categoryId;
 		this.locationId = locationId;
 		this.projectId = projectId;
-		this.description = description;
+		this.item = item;
 		this.tags = tags;
 		this.duration = duration;
 		this.year = year;
@@ -80,7 +82,7 @@ public class Item implements Serializable {
 	@Override
 	public String toString() {
 		return "Item [itemId=" + itemId + ", userId=" + userId + ", date=" + date + ", categoryId=" + categoryId
-				+ ", locationId=" + locationId + ", projectId=" + projectId + ", description=" + description + ", tags="
+				+ ", locationId=" + locationId + ", projectId=" + projectId + ", item=" + item + ", tags="
 				+ tags + ", duration=" + duration + ", year=" + year + ", month=" + month + ", day=" + day + ", week="
 				+ week + ", userName=" + userName + ", categoryName=" + categoryName + ", projectName=" + projectName
 				+ ", locationName=" + locationName + "]";
@@ -134,12 +136,12 @@ public class Item implements Serializable {
 		this.projectId = projectId;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getItem() {
+		return item;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setItem(String item) {
+		this.item = item;
 	}
 
 	public String getTags() {
@@ -220,6 +222,14 @@ public class Item implements Serializable {
 
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 }
