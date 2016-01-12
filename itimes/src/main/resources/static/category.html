@@ -41,7 +41,7 @@
 
           <div class="col-xs-9">
             <label>
-              <input type="text" class="form-control" ng-model="category.categoryName"/>
+              <input type="text" class="form-control" ng-model="category.categoryName" ng-if="!edit"/><span ng-if="edit">{{category.categoryName}}</span>
             </label>
           </div>
           <div class="col-xs-3">
