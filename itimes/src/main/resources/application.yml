@@ -1,0 +1,11 @@
+shiro:
+  realm: org.apache.shiro.realm.text.PropertiesRealm
+  loginUrl: /login.html
+  successUrl: /index.html
+  unauthorizedUrl: /forbidden.html
+  filterChainDefinitions:
+    "/login": anon
+    "/auth": anon
+    "/logout": logout
+    "/static/**": anon
+    "/**": authc

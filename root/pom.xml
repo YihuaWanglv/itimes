@@ -18,6 +18,7 @@
 		<zkclient.version>0.6</zkclient.version>
 		<zookeeper.version>3.4.6</zookeeper.version>
 		<spring-boot.version>1.2.5.RELEASE</spring-boot.version>
+		<shiro.version>1.2.3</shiro.version>
 	</properties>
 
 	<!-- <dependencyManagement> <dependencies> <dependency> <groupId>io.spring.platform</groupId> 
