@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoginController {
 
-	@RequestMapping("/auth")
+	@RequestMapping("/login")
 	@ResponseBody
 	public void login(HttpServletRequest req, HttpServletResponse resp, String username, String password) throws ServletException, IOException {
 		Subject subject = SecurityUtils.getSubject();  
@@ -37,7 +37,7 @@ public class LoginController {
         }  
         if(error != null) {//出错了，返回登录页面  
             req.setAttribute("error", error);  
-            req.getRequestDispatcher("/login.html").forward(req, resp);  
+            req.getRequestDispatcher("/view/sign-in.html").forward(req, resp);  
         } else {//登录成功  
 //            req.getRequestDispatcher("/index.html").forward(req, resp); 
             resp.sendRedirect("/index.html");//设置跳转的页面 
