@@ -2,6 +2,15 @@
 
 ## [todo]
 - 引入登录认证框架
+    + git clone https://github.com/boyazuo/shiro-spring-boot.git
+    + http://www.cnblogs.com/LZYY/p/4678749.html
+    + http://blog.csdn.net/jadyer/article/details/12208847
+    + http://blog.csdn.net/qiuqiupeng/article/details/38984779
+    + http://www.infoq.com/cn/articles/apache-shiro
+    + http://stackoverflow.com/questions/25241801/how-to-configure-shiro-with-spring-boot
+    + http://shiro.apache.org/spring.html
+    + https://github.com/qiuqiupeng/wf/blob/master/src/main/java/me/leep/wf/services/system/impl/ShiroRealmImpl.java
+    + https://www.ibm.com/developerworks/cn/java/j-lo-shiro/
 - 页面模块：Project、Location、Tags
 - Item列表首页的展示和实现
 
