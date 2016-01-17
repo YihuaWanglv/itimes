@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.iyihua.itimes.model.Project;
 import com.iyihua.itimes.repository.ProjectRepository;
 import com.iyihua.model.base.ProjectDTO;
 import com.iyihua.remote.base.ProjectRemote;
 
+@Service
 public class ProjectService implements ProjectRemote {
 
 	@Autowired

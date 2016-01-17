@@ -2,6 +2,7 @@ package com.iyihua.itimes.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.iyihua.itimes.model.User;
@@ -9,6 +10,7 @@ import com.iyihua.itimes.repository.UserRepository;
 import com.iyihua.model.base.UserDTO;
 import com.iyihua.remote.base.UserRemote;
 
+@Service
 public class UserService implements UserRemote {
 
 	@Autowired

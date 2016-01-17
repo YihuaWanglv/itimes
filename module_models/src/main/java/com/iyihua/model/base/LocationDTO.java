@@ -6,28 +6,28 @@ public class LocationDTO implements Serializable {
 
 	private static final long serialVersionUID = 7525327812218241003L;
 	
-	private Long locationd;
+	private Long locationId;
 	private String location;
 	private Long userId;
 	
 	public LocationDTO() {
 		super();
 	}
-	public LocationDTO(Long locationd, String location, Long userId) {
+	public LocationDTO(Long locationId, String location, Long userId) {
 		super();
-		this.locationd = locationd;
+		this.locationId = locationId;
 		this.location = location;
 		this.userId = userId;
 	}
 	@Override
 	public String toString() {
-		return "Location [locationd=" + locationd + ", location=" + location + ", userId=" + userId + "]";
+		return "Location [locationd=" + locationId + ", location=" + location + ", userId=" + userId + "]";
 	}
-	public Long getLocationd() {
-		return locationd;
+	public Long getLocationId() {
+		return locationId;
 	}
-	public void setLocationd(Long locationd) {
-		this.locationd = locationd;
+	public void setLocationId(Long locationId) {
+		this.locationId = locationId;
 	}
 	public String getLocation() {
 		return location;

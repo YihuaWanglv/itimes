@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.iyihua.itimes.model.Location;
@@ -12,6 +13,7 @@ import com.iyihua.itimes.repository.LocationRepository;
 import com.iyihua.model.base.LocationDTO;
 import com.iyihua.remote.base.LocationRemote;
 
+@Service
 public class LocationService implements LocationRemote {
 
 	@Autowired
