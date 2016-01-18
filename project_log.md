@@ -1,7 +1,12 @@
 # itimes 开发计划与进度记录
 
 ## [todo]
-- 引入登录认证框架
+- 使用mysql jdbcRealm替换原来的propertiesRealm
+- 页面模块：Project、Location、Tags
+- Item列表首页的展示和实现
+
+## [done]
+【2016.01.13】- 引入登录认证框架
     + git clone https://github.com/boyazuo/shiro-spring-boot.git
     + http://www.cnblogs.com/LZYY/p/4678749.html
     + http://blog.csdn.net/jadyer/article/details/12208847
@@ -11,10 +16,6 @@
     + http://shiro.apache.org/spring.html
     + https://github.com/qiuqiupeng/wf/blob/master/src/main/java/me/leep/wf/services/system/impl/ShiroRealmImpl.java
     + https://www.ibm.com/developerworks/cn/java/j-lo-shiro/
-- 页面模块：Project、Location、Tags
-- Item列表首页的展示和实现
-
-## [done]
 【2016.01.13】加入精美登录页面
 【2016.01.12】加入shiro实现简单页面登录
 【2016.01.11】- 定时mvc接口，引入angularjs作为前端应用框架，并实现Item和Category模块的雏形
