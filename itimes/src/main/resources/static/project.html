@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+  </head>
+  <body ng-app="myApp">
+    <div class="container" ng-controller="ProjectController">
+      <div class="page-header">
+        <h1>Project manager</h1>
+        <a href="index.html">index</a>
+      </div>
+      <div class="alert alert-info" role="alert" ng-hide="projects &amp;&amp; projects.length > 0">
+        There are no project yet.
+      </div>
+      <form class="form-horizontal" role="form" ng-submit="addProject(newPeoject)">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Enter a new project..." />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" title="Add" ng-disabled="!newProject">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </div>
+        <hr />
+        <div class="form-group" ng-repeat="project in projects">
+          <div class="input-group">
+            <span ng-if="edit">{{project.projectName}}</span><input type="text" class="form-control" ng-model="project.projectName" ng-if="!edit">
+            <div class="input-group-btn">
+              <!-- Buttons -->
+              <button class="btn btn-default" type="button" ng-if="edit">Delete</button>
+              <button class="btn btn-default" type="button" ng-if="edit" ng-click="changeButtonFlag();">Edit</button>
+              <button class="btn btn-default" type="button" ng-if="!edit" ng-click="changeButtonFlag();updateProject(project)">Update</button>
+            </div>
+          </div>
+        </div>
+        
+      </form>
+      
+    </div>
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./app/controllers.js"></script>
+    <script type="text/javascript" src="./app/services.js"></script>
+  </body>
+</html>

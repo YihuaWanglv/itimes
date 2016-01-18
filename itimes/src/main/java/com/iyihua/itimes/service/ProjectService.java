@@ -26,6 +26,7 @@ public class ProjectService implements ProjectRemote {
 			for (Project project : projects) {
 				ProjectDTO dto = new ProjectDTO();
 				BeanUtils.copyProperties(project, dto);
+				result.add(dto);
 			}
 		}
 		return result;

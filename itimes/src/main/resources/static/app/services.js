@@ -23,9 +23,33 @@
       }
     });
   };
-  
+
   ItemFactory.$inject = ['$resource'];
   CategoryFactory.$inject = ['$resource'];
   angular.module("myApp.services").factory("Item", ItemFactory);
   angular.module("myApp.services").factory("Category", CategoryFactory);
+  angular.module('myApp.services').factory('Project', function($resource) {
+    return $resource('/manager/project/:projectId', {
+      projectId: '@projectId'
+    }, {
+      update: {
+        method: "PUT"
+      },
+      remove: {
+        method: "DELETE"
+      }
+    });
+  });
+  angular.module('myApp.services').factory('Tag', function($resource) {
+    return $resource('/manager/tag/:tagId', {
+      tagId: '@tagId'
+    }, {
+      update: {
+        method: "PUT"
+      },
+      remove: {
+        method: "DELETE"
+      }
+    });
+  });
 }(angular));
