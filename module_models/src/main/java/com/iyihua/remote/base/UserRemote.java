@@ -11,4 +11,6 @@ public interface UserRemote {
 	public UserDTO createUser(UserDTO user);
 	
 	public void deleteUser(Long id); 
+	
+	public UserDTO findUserByName(String username);
 }

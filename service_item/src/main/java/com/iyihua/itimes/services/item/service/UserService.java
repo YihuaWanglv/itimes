@@ -26,4 +26,10 @@ public class UserService implements UserRemote {
 		
 	}
 
+	@Override
+	public UserDTO findUserByName(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

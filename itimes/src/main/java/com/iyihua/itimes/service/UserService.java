@@ -42,6 +42,17 @@ public class UserService implements UserRemote {
 		userRepository.delete(id);
 	}
 
+	@Override
+	public UserDTO findUserByName(String username) {
+		UserDTO result = null;
+		User user = userRepository.findByName(username);
+		if (user != null) {
+			result = new UserDTO();
+			BeanUtils.copyProperties(user, result);
+		}
+		return result;
+	}
+
 	
 
 }

@@ -11,6 +11,7 @@ public class UserDTO implements Serializable {
 
 	private Long id;
 	private String name;
+	private String password;
 	private Integer type;
 
 	private FieldExtend fieldExtend = new FieldExtend();
@@ -53,6 +54,15 @@ public class UserDTO implements Serializable {
 	}
 	public void setFieldExtend(FieldExtend fieldExtend) {
 		this.fieldExtend = fieldExtend;
+	}
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

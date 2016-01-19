@@ -17,4 +17,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
 	User findByNameAndTypeAllIgnoringCase(String name, Integer type);
 
+	User findByName(String name);
 }
