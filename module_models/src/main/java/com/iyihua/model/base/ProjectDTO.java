@@ -2,12 +2,16 @@ package com.iyihua.model.base;
 
 import java.io.Serializable;
 
+import com.iyihua.model.component.FieldExtend;
+
 public class ProjectDTO implements Serializable {
 
 	private static final long serialVersionUID = 7525327812218241004L;
 	private Long projectId;
 	private String projectName;
 	private Long userId;
+	
+	private FieldExtend fieldExtend = new FieldExtend();
 	
 	public ProjectDTO() {
 		super();
@@ -40,6 +44,10 @@ public class ProjectDTO implements Serializable {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	
-	
+	public FieldExtend getFieldExtend() {
+		return fieldExtend;
+	}
+	public void setFieldExtend(FieldExtend fieldExtend) {
+		this.fieldExtend = fieldExtend;
+	}
 }

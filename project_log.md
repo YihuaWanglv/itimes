@@ -1,11 +1,13 @@
 # itimes 开发计划与进度记录
 
 ## [todo]
+- 登录后保存用户id到session
 - 使用mysql jdbcRealm替换原来的propertiesRealm
-- 页面模块：Project、Location、Tags
+- 页面模块：Location、Tags
 - Item列表首页的展示和实现
 
 ## [done]
+【2016.01.19】project模块完成
 【2016.01.13】- 引入登录认证框架
     + git clone https://github.com/boyazuo/shiro-spring-boot.git
     + http://www.cnblogs.com/LZYY/p/4678749.html

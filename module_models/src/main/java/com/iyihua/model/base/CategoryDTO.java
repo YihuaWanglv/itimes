@@ -2,6 +2,8 @@ package com.iyihua.model.base;
 
 import java.io.Serializable;
 
+import com.iyihua.model.component.FieldExtend;
+
 public class CategoryDTO implements Serializable {
 
 	private static final long serialVersionUID = 7515327812218240002L;
@@ -10,6 +12,8 @@ public class CategoryDTO implements Serializable {
 	private String categoryName;
 	private Integer categoryType;
 	private Long parentId;
+	
+	private FieldExtend fieldExtend = new FieldExtend();
 
 	public CategoryDTO() {
 		super();
@@ -70,4 +74,10 @@ public class CategoryDTO implements Serializable {
 		this.userId = userId;
 	}
 	
+	public FieldExtend getFieldExtend() {
+		return fieldExtend;
+	}
+	public void setFieldExtend(FieldExtend fieldExtend) {
+		this.fieldExtend = fieldExtend;
+	}
 }

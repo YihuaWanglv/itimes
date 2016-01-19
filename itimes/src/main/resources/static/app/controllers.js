@@ -71,9 +71,33 @@
         $scope.projects.splice($scope.projects.indexOf(project),1);
       });
     }
-    $scope.edit = true;
-    $scope.changeButtonFlag = function() {
-      $scope.edit = (!$scope.edit);
+    $scope.changeButtonFlag = function(project) {
+      project.editting = !project.editting;
+    }
+  }
+
+  var LocationController = function($scope, Location) {
+    Location.query(function(response) {
+      $scope.locations = response ? response : [];
+    });
+    $scope.createLocation = function(locationName) {
+      new Location({
+        locationName: locationName
+      }).$save(function(location) {
+        $scope.locations.push(location);
+      });
+      $scope.newLocation = "";
+    }
+    $scope.updateLocation = function(location) {
+      location.$update();
+    }
+    $scope.deleteLocation = function(location) {
+      location.$remove(function(){
+        $scope.locations.splice($scope.locations.indexOf(location),1);
+      });
+    }
+    $scope.changeButtonFlag = function(location) {
+      location.editting = !location.editting;
     }
   }
 
@@ -97,18 +121,19 @@
         $scope.tags.splice($scope.tags.indexOf(tag),1);
       });
     }
-    $scope.edit = true;
-    $scope.changeButtonFlag = function() {
-      $scope.edit = (!$scope.edit);
+    $scope.changeButtonFlag = function(tag) {
+      tag.editting = !tag.editting;
     }
   }
   
   AppController.$inject = ['$scope', 'Item'];
   CategoryController.$inject = ['$scope', 'Category'];
   ProjectController.$inject = ['$scope','Project'];
+  LocationController.$inject = ['$scope','Location'];
   TagController.$inject = ['$scope','Tag'];
   angular.module("myApp.controllers").controller("AppController", AppController);
   angular.module("myApp.controllers").controller("CategoryController", CategoryController);
   angular.module("myApp.controllers").controller("ProjectController", ProjectController);
+  angular.module("myApp.controllers").controller("LocationController", LocationController);
   angular.module("myApp.controllers").controller("TagController", TagController);
 }(angular));

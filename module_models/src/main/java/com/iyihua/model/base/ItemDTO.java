@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.iyihua.model.component.FieldExtend;
+
 public class ItemDTO implements Serializable {
 
 	private static final long serialVersionUID = 7527822112218242002L;
@@ -26,6 +28,8 @@ public class ItemDTO implements Serializable {
 	private String projectName;
 	private String locationName;
 	private String result;
+	
+	private FieldExtend fieldExtend = new FieldExtend();
 
 	public ItemDTO() {
 		super();
@@ -205,4 +209,10 @@ public class ItemDTO implements Serializable {
 		this.result = result;
 	}
 
+	public FieldExtend getFieldExtend() {
+		return fieldExtend;
+	}
+	public void setFieldExtend(FieldExtend fieldExtend) {
+		this.fieldExtend = fieldExtend;
+	}
 }

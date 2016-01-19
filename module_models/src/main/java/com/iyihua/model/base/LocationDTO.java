@@ -2,6 +2,8 @@ package com.iyihua.model.base;
 
 import java.io.Serializable;
 
+import com.iyihua.model.component.FieldExtend;
+
 public class LocationDTO implements Serializable {
 
 	private static final long serialVersionUID = 7525327812218241003L;
@@ -9,6 +11,8 @@ public class LocationDTO implements Serializable {
 	private Long locationId;
 	private String location;
 	private Long userId;
+	
+	private FieldExtend fieldExtend = new FieldExtend();
 	
 	public LocationDTO() {
 		super();
@@ -41,6 +45,11 @@ public class LocationDTO implements Serializable {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	
+	public FieldExtend getFieldExtend() {
+		return fieldExtend;
+	}
+	public void setFieldExtend(FieldExtend fieldExtend) {
+		this.fieldExtend = fieldExtend;
+	}
 	
 }

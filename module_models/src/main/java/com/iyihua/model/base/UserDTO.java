@@ -3,6 +3,8 @@ package com.iyihua.model.base;
 
 import java.io.Serializable;
 
+import com.iyihua.model.component.FieldExtend;
+
 public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 127199294326731001L;
@@ -11,6 +13,7 @@ public class UserDTO implements Serializable {
 	private String name;
 	private Integer type;
 
+	private FieldExtend fieldExtend = new FieldExtend();
 
 	public UserDTO() {
 		super();
@@ -43,6 +46,13 @@ public class UserDTO implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public FieldExtend getFieldExtend() {
+		return fieldExtend;
+	}
+	public void setFieldExtend(FieldExtend fieldExtend) {
+		this.fieldExtend = fieldExtend;
 	}
 
 	@Override

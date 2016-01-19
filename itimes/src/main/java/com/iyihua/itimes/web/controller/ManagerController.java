@@ -69,7 +69,7 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value = "/project/{projectId}", method = RequestMethod.PUT)
-	public ProjectDTO updateProject(ProjectDTO project, @PathVariable Long projectId) {
+	public ProjectDTO updateProject(@RequestBody ProjectDTO project, @PathVariable Long projectId) {
 		project.setProjectId(projectId);
 		return projectService.saveProject(project);
 	}
