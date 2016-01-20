@@ -18,6 +18,7 @@ public class UserService implements UserRemote {
 	
 	@Override
 	public UserDTO findUserById(Long id) {
+		Assert.notNull(id, "userId can not be null!");
 		UserDTO result = null;
 		User user = userRepository.findOne(id);
 		if (user != null) {

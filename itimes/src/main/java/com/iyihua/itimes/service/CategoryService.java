@@ -21,6 +21,7 @@ public class CategoryService implements CategoryRemote {
 	
 	@Override
 	public List<CategoryDTO> findCategorysByUserId(Long userId) {
+		Assert.notNull(userId, "userId can not be null!");
 		List<CategoryDTO> result = null;
 		List<Category> categories = categoryRepository.findByUserId(userId);
 		if (categories != null && categories.size() > 0) {

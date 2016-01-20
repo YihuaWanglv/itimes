@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.iyihua.itimes.model.Project;
 import com.iyihua.itimes.repository.ProjectRepository;
@@ -20,6 +21,7 @@ public class ProjectService implements ProjectRemote {
 	
 	@Override
 	public List<ProjectDTO> findProjectByUserId(Long userId) {
+		Assert.notNull(userId, "userId can not be null!");
 		List<ProjectDTO> result = new ArrayList<ProjectDTO>();
 		List<Project> projects = projectRepository.findByUserId(userId);
 		if (projects != null && projects.size() > 0) {

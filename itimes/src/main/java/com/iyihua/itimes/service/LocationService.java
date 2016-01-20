@@ -21,6 +21,7 @@ public class LocationService implements LocationRemote {
 	
 	@Override
 	public List<LocationDTO> findLoationByUserId(Long userId) {
+		Assert.notNull(userId, "userId can not be null!");
 		List<LocationDTO> result = new ArrayList<LocationDTO>();
 		List<Location> locations = locationRepository.findByUserId(userId);
 		if (locations != null && locations.size() > 0) {

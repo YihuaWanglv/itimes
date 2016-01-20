@@ -2,8 +2,6 @@ package com.iyihua.itimes.web.controller;
 
 import java.util.List;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.iyihua.itimes.component.security.LoginSessionManager;
 import com.iyihua.model.base.CategoryDTO;
 import com.iyihua.model.base.LocationDTO;
 import com.iyihua.model.base.ProjectDTO;
 import com.iyihua.model.base.TagsDTO;
+import com.iyihua.model.base.UserDTO;
 import com.iyihua.remote.base.CategoryRemote;
 import com.iyihua.remote.base.LocationRemote;
 import com.iyihua.remote.base.ProjectRemote;
@@ -32,17 +32,21 @@ public class ManagerController {
 	LocationRemote locationService;
 	@Autowired
 	TagsRemote tagsService;
+	
+	@Autowired
+	LoginSessionManager loginSessionManager;
 
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
 	public List<CategoryDTO> listCategorys() {
-		Long userId = 1L;
+		Long userId = loginSessionManager.getSessionUserId();
 		List<CategoryDTO> result = categoryService.findCategorysByUserId(userId);
 		return result;
 	}
 
 	@RequestMapping(value = "/category", method = RequestMethod.POST)
 	public CategoryDTO createCategory(@RequestBody CategoryDTO category) {
-		category.setUserId(1L);
+		Long userId = loginSessionManager.getSessionUserId();
+		category.setUserId(userId);
 		return categoryService.saveCategory(category);
 	}
 
@@ -59,17 +63,19 @@ public class ManagerController {
 	
 	@RequestMapping(value = "/project", method = RequestMethod.GET)
 	public List<ProjectDTO> listProjects() {
-		Long userId = 1L;
-		
-		Subject currentUser = SecurityUtils.getSubject();
-		
+		Long userId = null;
+		UserDTO user = loginSessionManager.getSessionUser();
+		if (user != null) {
+			userId = user.getId();
+		}
 		List<ProjectDTO> projects = projectService.findProjectByUserId(userId);
 		return projects;
 	}
 
 	@RequestMapping(value = "/project", method = RequestMethod.POST)
 	public ProjectDTO createProject(@RequestBody ProjectDTO project) {
-		project.setUserId(1L);
+		Long userId = loginSessionManager.getSessionUserId();
+		project.setUserId(userId);
 		return projectService.saveProject(project);
 	}
 	
@@ -86,14 +92,15 @@ public class ManagerController {
 	
 	@RequestMapping(value = "/location", method = RequestMethod.GET)
 	public List<LocationDTO> listLocations() {
-		Long userId = 1L;
+		Long userId = loginSessionManager.getSessionUserId();
 		List<LocationDTO> result = locationService.findLoationByUserId(userId);
 		return result;
 	}
 
 	@RequestMapping(value = "/location", method = RequestMethod.POST)
 	public LocationDTO createLocation(@RequestBody LocationDTO location) {
-		location.setUserId(1L);
+		Long userId = loginSessionManager.getSessionUserId();
+		location.setUserId(userId);
 		return locationService.saveLocation(location);
 	}
 
@@ -110,13 +117,14 @@ public class ManagerController {
 	
 	@RequestMapping(value = "/tag", method = RequestMethod.GET)
 	public List<TagsDTO> listTags() {
-		Long userId = 1L;
+		Long userId = loginSessionManager.getSessionUserId();
 		return tagsService.findTagsByUserId(userId);
 	}
 	
 	@RequestMapping(value = "/tag", method = RequestMethod.POST)
 	public TagsDTO createTag(@RequestBody TagsDTO tag) {
-		tag.setUserId(1L);
+		Long userId = loginSessionManager.getSessionUserId();
+		tag.setUserId(userId);
 		return tagsService.saveTags(tag);
 	}
 	

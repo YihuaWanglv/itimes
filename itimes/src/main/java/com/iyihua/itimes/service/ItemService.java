@@ -29,6 +29,7 @@ public class ItemService implements ItemRemote {
 
 	@Override
 	public List<ItemDTO> findItemsByUserId(Long userId) {
+		Assert.notNull(userId, "userId can not be null!");
 		List<ItemDTO> result = new ArrayList<ItemDTO>();
 		List<Item> items = itemMapper.findAll();
 		if (items != null && items.size() > 0) {

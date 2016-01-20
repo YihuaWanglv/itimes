@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
-
+	
 	@RequestMapping("/login")
 	@ResponseBody
 	public void login(HttpServletRequest req, HttpServletResponse resp, String username, String password) throws ServletException, IOException {

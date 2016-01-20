@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.iyihua.itimes.model.Tags;
 import com.iyihua.itimes.repository.TagsRepository;
@@ -20,6 +21,7 @@ public class TagsService implements TagsRemote {
 	
 	@Override
 	public List<TagsDTO> findTagsByUserId(Long userId) {
+		Assert.notNull(userId, "userId can not be null!");
 		List<TagsDTO> result = new ArrayList<TagsDTO>();
 		List<Tags> tags = tagsRepository.findByUserId(userId);
 		if (tags != null && tags.size() > 0) {
