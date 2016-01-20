@@ -37,7 +37,7 @@ public class LoginController {
         }  
         if(error != null) {//出错了，返回登录页面  
             req.setAttribute("error", error);  
-            req.getRequestDispatcher("/view/sign-in.html").forward(req, resp);  
+            resp.sendRedirect("/forbidden.html");
         } else {//登录成功  
 //            req.getRequestDispatcher("/index.html").forward(req, resp); 
             resp.sendRedirect("/index.html");//设置跳转的页面 

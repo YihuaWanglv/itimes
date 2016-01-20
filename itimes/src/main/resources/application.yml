@@ -1,5 +1,5 @@
 shiro:
-  realm: org.apache.shiro.realm.text.PropertiesRealm
+  realm: com.iyihua.itimes.config.security.MyRealm
   loginUrl: /view/sign-in.html
   successUrl: /index.html
   unauthorizedUrl: /forbidden.html

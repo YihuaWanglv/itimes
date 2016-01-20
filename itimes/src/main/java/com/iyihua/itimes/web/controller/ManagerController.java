@@ -2,6 +2,8 @@ package com.iyihua.itimes.web.controller;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,6 +60,9 @@ public class ManagerController {
 	@RequestMapping(value = "/project", method = RequestMethod.GET)
 	public List<ProjectDTO> listProjects() {
 		Long userId = 1L;
+		
+		Subject currentUser = SecurityUtils.getSubject();
+		
 		List<ProjectDTO> projects = projectService.findProjectByUserId(userId);
 		return projects;
 	}

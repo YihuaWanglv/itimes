@@ -19,6 +19,9 @@ public class User implements Serializable {
 
 	@Column(nullable = false)
 	private String name;
+	
+	@Column(nullable = false)
+	private String password;
 
 	@Column(nullable = false)
 	private Integer type;
@@ -27,7 +30,7 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(Long id, String name, Integer type) {
+	public User(Long id, String name, String password, Integer type) {
 		super();
 		this.name = name;
 	}
@@ -56,9 +59,19 @@ public class User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public String toString() {
-		return getId() + "," + getName() + "," + getType();
+		return "User [id=" + id + ", name=" + name + ", password=" + password + ", type=" + type + "]";
 	}
+
+	
 }
