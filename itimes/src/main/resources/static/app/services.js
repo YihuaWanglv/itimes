@@ -1,16 +1,5 @@
 (function(angular) {
-  // var ItemFactory = function($resource) {
-  //   return $resource('/items/:id', {
-  //     id: '@id'
-  //   }, {
-  //     update: {
-  //       method: "PUT"
-  //     },
-  //     remove: {
-  //       method: "DELETE"
-  //     }
-  //   });
-  // };
+
   var CategoryFactory = function($resource) {
     return $resource('/manager/category/:categoryId', {
       categoryId: '@categoryId'
@@ -53,8 +42,8 @@
     });
   });
   angular.module('myApp.services').factory('Item', function($resource) {
-    return $resource('/items/list', {
-      last: '2016-01-08'
+    return $resource('/items/:itemId', {
+      itemId: '@itemId'
     }, {
       update: {
         method: "PUT"

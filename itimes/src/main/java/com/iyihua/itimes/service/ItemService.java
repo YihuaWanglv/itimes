@@ -63,7 +63,8 @@ public class ItemService implements ItemRemote {
 	public Page<ItemDTO> findItemsByQueryParamsWithPage(UserItemQueryDTO query) {
 		Page<ItemDTO> pages = new Page<ItemDTO>();
 		List<ItemDTO> result = new ArrayList<ItemDTO>();
-		List<Item> items = superItemMapper.findItemsByParams(query);
+//		List<Item> items = superItemMapper.findItemsByParams(query);
+		List<Item> items = superItemMapper.listItems(query);
 		if (items != null) {
 			for (Item item : items) {
 				ItemDTO dto = new ItemDTO();
@@ -71,7 +72,8 @@ public class ItemService implements ItemRemote {
 				result.add(dto);
 			}
 		}
-		int count = superItemMapper.countItemsByParams(query);
+//		int count = superItemMapper.countItemsByParams(query);
+		int count = superItemMapper.countItems(query);
 		pages.setItems(result);
 		pages.setTotal(count);
 		pages.setMax(count / pages.getSize() + 1);

@@ -151,4 +151,9 @@
 			limit #{start}, #{size}
 		</if>
 	</select>
+	<select id="countItems" parameterType="com.iyihua.model.query.UserItemQueryDTO"
+		resultType="Integer">
+		select count(*)
+		<include refid="listItemsCommon" />
+	</select>
 </mapper>

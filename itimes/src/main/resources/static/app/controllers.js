@@ -1,45 +1,21 @@
 (function(angular) {
-  // var AppController = function($scope, Item) {
-  //   Item.query(function(response) {
-  //     $scope.items = response ? response : [];
-  //   });
-    
-  //   $scope.addItem = function(description) {
-  //     new Item({
-  //       description: description,
-  //       checked: false
-  //     }).$save(function(item) {
-  //       $scope.items.push(item);
-  //     });
-  //     $scope.newItem = "";
-  //   };
-    
-  //   $scope.updateItem = function(item) {
-  //     item.$update();
-  //   };
-    
-  //   $scope.deleteItem = function(item) {
-  //     item.$remove(function() {
-  //       $scope.items.splice($scope.items.indexOf(item), 1);
-  //     });
-  //   };
-  // };
 
-  var ItemController = function($scope, $http) {
-    // Item.query(function(response){
-    //   $scope.items = (response&&response.items)?response.items:[];
-    // });
+
+  var ItemController = function($scope, $http, Item) {
     $scope.page = 1;
     $http.get('/items/list',{params: {page:$scope.page}})
-    .success(function(data, status, headers, config){
-      $scope.items = (data&&data.items)?data.items:[];
-    })
-    .error(function(data, status, headers, config){
-      $scope.items = [];
-      alert('load failed');
-    });
+      .success(function(data, status, headers, config){
+        $scope.items = (data&&data.items)?data.items:[];
+      })
+      .error(function(data, status, headers, config){
+        $scope.items = [];
+        alert('load failed');
+      });
     $scope.listNext = function() {
       $scope.page++;
+      listItem();
+    }
+    $scope.listItem = function() {
       $http.get('/items/list',{params: {page:$scope.page}})
       .success(function(data, status, headers, config){
         $scope.items = (data&&data.items)?data.items:[];
@@ -48,6 +24,25 @@
         $scope.items = [];
         alert('load failed');
       });
+    }
+    $scope.createItem = function(name) {
+      new Item({
+        item: name
+      }).$save(function(item){
+        $scope.Items.push(item);
+      });
+      $scope.newItem = "";
+    }
+    $scope.updateItem = function(item) {
+      item.$update();
+    }
+    $scope.deleteItem = function(item) {
+      item.$remove(function(){
+        $scope.items.splice($scope.items.indexOf(item),1);
+      });
+    }
+    $scope.changeButtonFlag = function(item) {
+      item.editting = !item.editting;
     }
   }
   var CategoryController = function($scope, Category) {
@@ -156,7 +151,7 @@
   ProjectController.$inject = ['$scope','Project'];
   LocationController.$inject = ['$scope','Location'];
   TagController.$inject = ['$scope','Tag'];
-  ItemController.$inject = ['$scope', '$http'];
+  ItemController.$inject = ['$scope', '$http', 'Item'];
   // angular.module("myApp.controllers").controller("AppController", AppController);
   angular.module("myApp.controllers").controller("CategoryController", CategoryController);
   angular.module("myApp.controllers").controller("ProjectController", ProjectController);

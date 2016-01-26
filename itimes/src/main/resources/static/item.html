@@ -12,26 +12,36 @@
       <div class="alert alert-info" role="alert" ng-hide="items &amp;&amp; items.length > 0">
         There are no items yet.
       </div>
-      <form class="form-horizontal" role="form" >
+      <form class="form-horizontal" role="form" ng-submit="createItem(newItem)">
+        
+
         <div class="input-group">
-          <input type="text" class="form-control"  placeholder="Enter the description..." />
+          <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="newItem"/>
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit"  title="Add">
+            <button class="btn btn-success" type="submit" title="Add" ng-disabled="!newItem">
               <span class="glyphicon glyphicon-plus"></span>
             </button>
           </span>
         </div>
         <hr />
-        <div class="form-group" ng-repeat="item in items">
-          <div class="checkbox col-xs-9">
-            <label>
-              <input type="text" ng-model="item.item" ng-change="updateItem(item)"/> {{item.item}}
-            </label>
-          </div>
-          <div class="col-xs-3">
-            <button class="pull-right btn btn-danger" type="button" title="Delete"
-              >
+        <div class="input-group" ng-repeat="item in items">
+          
+
+          <span ng-if="!item.editting">{{item.date}} </span>
+          <span ng-if="!item.editting">{{item.categoryName}} </span>
+          <span ng-if="!item.editting">{{item.projectName}} </span>
+          <span ng-if="!item.editting">{{item.locationName}} </span>
+          <span ng-if="!item.editting">{{item.item}}</span>
+          <input type="text" class="form-control" ng-model="item.item" ng-if="item.editting">
+          <div class="input-group-btn">
+            <button class="btn btn-default btn-danger" type="button" title="Delete" ng-if="!item.editting" ng-click="deleteItem(item)">
               <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            <button class="btn btn-default btn-primary" type="button" title="Edit" ng-if="!item.editting" ng-click="changeButtonFlag(item);">
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <button class="btn btn-default btn-success" type="button" title="Update" ng-if="item.editting" ng-click="changeButtonFlag(item);updateItem(item)">
+              <span class="glyphicon glyphicon-ok"></span>
             </button>
           </div>
         </div>
