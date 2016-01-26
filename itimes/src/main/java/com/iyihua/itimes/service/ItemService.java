@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import util.DateUtil;
+
 import com.iyihua.itimes.mapper.ItemMapper;
 import com.iyihua.itimes.mapper.SuperItemMapper;
 import com.iyihua.itimes.model.Item;
 import com.iyihua.itimes.repository.ItemRepository;
 import com.iyihua.model.base.ItemDTO;
+import com.iyihua.model.base.ItemListDTO;
 import com.iyihua.model.component.Page;
 import com.iyihua.model.query.UserItemQueryDTO;
 import com.iyihua.remote.base.ItemRemote;
@@ -88,6 +91,29 @@ public class ItemService implements ItemRemote {
 	@Override
 	public void deleteItem(Long itemId) {
 		itemRepository.delete(itemId);
+	}
+
+	@Override
+	public ItemListDTO listNext(ItemListDTO itemListDTO) {
+		Assert.notNull(itemListDTO.getUserId(), "userId can not be null!");
+		itemListDTO.getStart();
+		itemListDTO.getEnd();
+		
+		UserItemQueryDTO query = new UserItemQueryDTO();
+		query.setDateStringStart(DateUtil.format(itemListDTO.getStart(), DateUtil.SIMPLE_PATTERN));
+		query.setDateStringEnd(DateUtil.format(itemListDTO.getEnd(), DateUtil.SIMPLE_PATTERN));
+		query.setUserId(itemListDTO.getUserId());
+		List<Item> items = superItemMapper.listItems(query);
+		List<ItemDTO> result = new ArrayList<ItemDTO>();
+		if (items != null) {
+			for (Item item : items) {
+				ItemDTO dto = new ItemDTO();
+				BeanUtils.copyProperties(item, dto);
+				result.add(dto);
+			}
+		}
+		itemListDTO.setItems(result);
+		return itemListDTO;
 	}
 
 }

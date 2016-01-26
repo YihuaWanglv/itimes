@@ -1,30 +1,55 @@
 (function(angular) {
-  var AppController = function($scope, Item) {
-    Item.query(function(response) {
-      $scope.items = response ? response : [];
-    });
+  // var AppController = function($scope, Item) {
+  //   Item.query(function(response) {
+  //     $scope.items = response ? response : [];
+  //   });
     
-    $scope.addItem = function(description) {
-      new Item({
-        description: description,
-        checked: false
-      }).$save(function(item) {
-        $scope.items.push(item);
-      });
-      $scope.newItem = "";
-    };
+  //   $scope.addItem = function(description) {
+  //     new Item({
+  //       description: description,
+  //       checked: false
+  //     }).$save(function(item) {
+  //       $scope.items.push(item);
+  //     });
+  //     $scope.newItem = "";
+  //   };
     
-    $scope.updateItem = function(item) {
-      item.$update();
-    };
+  //   $scope.updateItem = function(item) {
+  //     item.$update();
+  //   };
     
-    $scope.deleteItem = function(item) {
-      item.$remove(function() {
-        $scope.items.splice($scope.items.indexOf(item), 1);
-      });
-    };
-  };
+  //   $scope.deleteItem = function(item) {
+  //     item.$remove(function() {
+  //       $scope.items.splice($scope.items.indexOf(item), 1);
+  //     });
+  //   };
+  // };
 
+  var ItemController = function($scope, $http) {
+    // Item.query(function(response){
+    //   $scope.items = (response&&response.items)?response.items:[];
+    // });
+    $scope.page = 1;
+    $http.get('/items/list',{params: {page:$scope.page}})
+    .success(function(data, status, headers, config){
+      $scope.items = (data&&data.items)?data.items:[];
+    })
+    .error(function(data, status, headers, config){
+      $scope.items = [];
+      alert('load failed');
+    });
+    $scope.listNext = function() {
+      $scope.page++;
+      $http.get('/items/list',{params: {page:$scope.page}})
+      .success(function(data, status, headers, config){
+        $scope.items = (data&&data.items)?data.items:[];
+      })
+      .error(function(data, status, headers, config){
+        $scope.items = [];
+        alert('load failed');
+      });
+    }
+  }
   var CategoryController = function($scope, Category) {
     Category.query(function(response) {
       $scope.categorys = response ? response : [];
@@ -126,14 +151,16 @@
     }
   }
   
-  AppController.$inject = ['$scope', 'Item'];
+  // AppController.$inject = ['$scope', 'Item'];
   CategoryController.$inject = ['$scope', 'Category'];
   ProjectController.$inject = ['$scope','Project'];
   LocationController.$inject = ['$scope','Location'];
   TagController.$inject = ['$scope','Tag'];
-  angular.module("myApp.controllers").controller("AppController", AppController);
+  ItemController.$inject = ['$scope', '$http'];
+  // angular.module("myApp.controllers").controller("AppController", AppController);
   angular.module("myApp.controllers").controller("CategoryController", CategoryController);
   angular.module("myApp.controllers").controller("ProjectController", ProjectController);
   angular.module("myApp.controllers").controller("LocationController", LocationController);
   angular.module("myApp.controllers").controller("TagController", TagController);
+  angular.module("myApp.controllers").controller("ItemController", ItemController);
 }(angular));

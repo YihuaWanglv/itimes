@@ -1,10 +1,17 @@
 package com.iyihua.itimes.web.controller;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import util.DateUtil;
+
+import com.iyihua.itimes.component.security.LoginSessionManager;
 import com.iyihua.model.base.ItemDTO;
+import com.iyihua.model.base.ItemListDTO;
+import com.iyihua.model.component.Page;
+import com.iyihua.model.query.UserItemQueryDTO;
 import com.iyihua.remote.base.ItemRemote;
 
 @RestController
@@ -12,11 +19,13 @@ import com.iyihua.remote.base.ItemRemote;
 public class ItemController {
 	@Autowired
 	private ItemRemote itemService;
+	@Autowired
+	LoginSessionManager loginSessionManager;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<ItemDTO> findItemsByUser() {
 		
-		Long userId = 1L;
+		Long userId = loginSessionManager.getSessionUserId();
 		return itemService.findItemsByUserId(userId);
 	}
 
@@ -34,5 +43,24 @@ public class ItemController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void deleteItem(@PathVariable Long id) {
 		itemService.deleteItem(id);
+	}
+	
+//	@RequestMapping(value = "/list", method = RequestMethod.GET)
+//	public ItemListDTO listItems(String last) {
+//		Integer type = 0;
+//		Date lastDate = DateUtil.parseToDate(last, DateUtil.SIMPLE_PATTERN);
+//		Date next = DateUtil.addDateByDays(lastDate, 1);
+//		ItemListDTO list = itemService.listNext(new ItemListDTO(loginSessionManager.getSessionUserId(), type, next, next, DateUtil.addDateByDays(next, 1), null));
+//		return list;
+//	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public Page<ItemDTO> listItems(Integer page) {
+		
+		UserItemQueryDTO query = new UserItemQueryDTO();
+		query.setPage((page != null && page > -1) ? page : 0);
+		query.setUserId(loginSessionManager.getSessionUserId());
+		Page<ItemDTO> list = itemService.findItemsByQueryParamsWithPage(query);
+		return list;
 	}
 }
