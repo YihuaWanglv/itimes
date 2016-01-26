@@ -1,12 +1,14 @@
 # itimes 开发计划与进度记录
 
 ## [todo]
+使用aop或注解的方式实现清空或重载缓存
 - Item列表首页的展示和实现
 - 密码加密
 - redis集成，分布式session共享
 - 加入针对资源级别的认证
 
 ## [done]
+【2016.01.24】bower install --save angular-ui-utils
 【2016.01.20】- 登录后保存用户id到session
 【2016.01.20】- 使用mysql jdbcRealm替换原来的propertiesRealm
     + http://www.iyujian.me/java/shiro-custom-realm-of-authorizing-realm.html
