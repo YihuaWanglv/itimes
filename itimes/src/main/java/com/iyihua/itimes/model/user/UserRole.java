@@ -2,9 +2,6 @@ package com.iyihua.itimes.model.user;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-
 //@Entity
 public class UserRole implements Serializable {
 

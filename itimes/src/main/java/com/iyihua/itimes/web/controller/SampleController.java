@@ -3,9 +3,6 @@ package com.iyihua.itimes.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iyihua.itimes.mapper.SuperItemMapper;
 import com.iyihua.itimes.model.Category;
@@ -32,6 +29,7 @@ public class SampleController {
 	
 //	@RequestMapping("/")
 //	@ResponseBody
+	@SuppressWarnings("unused")
 	String home() {
 		String data = "";
 		

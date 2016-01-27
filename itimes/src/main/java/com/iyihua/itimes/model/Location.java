@@ -14,7 +14,7 @@ public class Location implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private Long locationd;
+	private Long locationId;
 	@Column(nullable = false)
 	private String location;
 	@Column(nullable = false)
@@ -23,21 +23,21 @@ public class Location implements Serializable {
 	public Location() {
 		super();
 	}
-	public Location(Long locationd, String location, Long userId) {
+	public Location(Long locationId, String location, Long userId) {
 		super();
-		this.locationd = locationd;
+		this.locationId = locationId;
 		this.location = location;
 		this.userId = userId;
 	}
 	@Override
 	public String toString() {
-		return "Location [locationd=" + locationd + ", location=" + location + ", userId=" + userId + "]";
+		return "Location [locationId=" + locationId + ", location=" + location + ", userId=" + userId + "]";
 	}
-	public Long getLocationd() {
-		return locationd;
+	public Long getLocationId() {
+		return locationId;
 	}
-	public void setLocationd(Long locationd) {
-		this.locationd = locationd;
+	public void setLocationId(Long locationId) {
+		this.locationId = locationId;
 	}
 	public String getLocation() {
 		return location;
