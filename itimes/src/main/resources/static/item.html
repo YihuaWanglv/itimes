@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./bower_components/angular-ui-select/dist/select.min.css" />
+    <link rel="stylesheet" href="./css/global.css" />
     <!--[if lt IE 9]>
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
@@ -14,11 +15,14 @@
     <![endif]-->
   </head>
   <body ng-app="myApp">
+    <div id="header"></div>
     <div class="container" ng-controller="ItemController">
+
       <div class="page-header">
         <h1>A time items list</h1>
         <a href="category.html">category</a> <a href="project.html">project</a> <a href="location.html">location</a> <a href="tag.html">tag</a>
       </div>
+
       <div class="alert alert-info" role="alert" ng-hide="items &amp;&amp; items.length > 0">
         There are no items yet.
       </div>
@@ -61,11 +65,6 @@
         </div>
 
         <div class="form-group">
-          <!--
-          <select name="categorySelect"  ng-options="aa.categoryId as aa.categoryName for aa in categorys" ng-model="categoryName">
-            <option value="">select</option>
-          </select>
-          -->
           <div class="col-sm-3">
             <input class="form-control" type="date" name="date" ng-model="newDate" placeholder="yyyy-MM-dd" min="1949-01-01" required />
           </div>
@@ -78,16 +77,11 @@
                 </button>
               </span>
             </div>
-            
           </div>
-          
-          
-          
         </div>
         <hr />
-        <div class="input-group" ng-repeat="item in items">
+        <div class="input-group content-list" ng-repeat="item in items">
           
-
           <span ng-if="!item.editting">{{item.date | date:'yyyy-MM-dd'}} </span>
           <span ng-if="!item.editting">{{item.categoryName}} </span>
           <span ng-if="!item.editting">{{item.projectName}} </span>
@@ -110,11 +104,18 @@
       </form>
     </div>
     <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script> 
+      $(function(){
+        $("#header").load("./view/header.html"); 
+        // $("#footer").load("footer.html"); 
+      });
+    </script>
     <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
     <script type="text/javascript" src="./bower_components/angular-ui-select/dist/select.min.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/betsol/angular-input-date/master/src/angular-input-date.js"></script>
+    <script type="text/javascript" src="./lib/angular/input-date/angular-input-date.js"></script>
     <script type="text/javascript" src="./app/app.js"></script>
     <script type="text/javascript" src="./app/controllers.js"></script>
     <script type="text/javascript" src="./app/services.js"></script>

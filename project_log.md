@@ -1,7 +1,8 @@
 # itimes 开发计划与进度记录
 
 ## [todo]
-使用aop或注解的方式实现清空或重载缓存
+- http://www.htmleaf.com/jQuery/Menu-Navigation/201601082998.html
+- 使用aop或注解的方式实现清空或重载缓存
 - Item列表首页的展示和实现
 - 密码加密
 - redis集成，分布式session共享

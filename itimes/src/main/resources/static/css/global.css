@@ -1,0 +1,36 @@
+body, button, input, select, textarea, h2, h3, h4, h5, h6 {
+	font-family: Georgia, Lato, Helvetica,Arial,Tahoma, "Microsoft YaHei", sans-serif;
+}
+h1 {
+	font-family: /* Century Gothic, Impact,  */Georgia, Lato, Helvetica,Arial,Tahoma, "Microsoft YaHei", sans-serif;
+}
+body .content-list {
+	font-family: /* Comic Sans MS,  */Georgia, Century Gothic,Futura, STXihei, "华文细黑", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	/* font-weight: 200;
+	line-height: 30px; */
+}
+body .font-header {
+	font-family: Georgia, STXihei, "华文细黑", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+	/* font-size: 22px; */
+}
+body {
+  padding-top: 50px;
+}
+input {
+	background-color: #f5f5f5 !important;
+	border: none !important;
+}
+div.ui-select-container .btn-default {
+	background-color: #f5f5f5 !important;
+	border: none !important;
+}
+.navbar-inverse {
+    background-color: #f5f5f5 !important;
+    border-color: #f5f5f5 !important;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
