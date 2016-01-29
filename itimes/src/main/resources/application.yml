@@ -1,7 +1,7 @@
 shiro:
   realm: com.iyihua.itimes.config.security.MyRealm
   loginUrl: /view/sign-in.html
-  successUrl: /index.html
+  successUrl: /item.html
   unauthorizedUrl: /forbidden.html
   filterChainDefinitions:
     "/login": anon

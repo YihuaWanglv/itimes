@@ -10,26 +10,26 @@ public class ItemDTO implements Serializable {
 
 	private static final long serialVersionUID = 7527822112218242002L;
 
-	private Long itemId;
-	private Long userId;
-	private Date date;
-	private Long categoryId;
-	private Long locationId;
-	private Long projectId;
-	private String item;
-	private String tags;
-	private BigDecimal duration;
-	private String year;
-	private String month;
-	private String day;
-	private String week;
-	private String userName;
-	private String categoryName;
-	private String projectName;
-	private String locationName;
-	private String result;
+	protected Long itemId;
+	protected Long userId;
+	protected Date date;
+	protected Long categoryId;
+	protected Long locationId;
+	protected Long projectId;
+	protected String item;
+	protected String tags;
+	protected BigDecimal duration;
+	protected String year;
+	protected String month;
+	protected String day;
+	protected String week;
+	protected String userName;
+	protected String categoryName;
+	protected String projectName;
+	protected String locationName;
+	protected String result;
 	
-	private FieldExtend fieldExtend = new FieldExtend();
+	protected FieldExtend fieldExtend = new FieldExtend();
 
 	public ItemDTO() {
 		super();

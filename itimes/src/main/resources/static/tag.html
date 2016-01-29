@@ -2,8 +2,11 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/global.css" />
   </head>
   <body ng-app="myApp">
+    <div id="header"></div>
+    <div class="nav-right-holder"></div>
     <div class="container" ng-controller="ProjectController">
       <div class="page-header">
         <h1>Project manager</h1>
@@ -43,6 +46,8 @@
     <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="./app/common/page-layout-init.js"></script>
     <script type="text/javascript" src="./app/app.js"></script>
     <script type="text/javascript" src="./app/controllers.js"></script>
     <script type="text/javascript" src="./app/services.js"></script>

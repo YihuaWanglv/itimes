@@ -21,11 +21,11 @@ public class Item implements Serializable {
 	private Long userId;
 	@Column(nullable = false)
 	private Date date;
-	@Column(nullable = false)
+	@Column
 	private Long categoryId;
 	@Column
 	private Long locationId;
-	@Column(nullable = false)
+	@Column
 	private Long projectId;
 	@Column
 	private String item;

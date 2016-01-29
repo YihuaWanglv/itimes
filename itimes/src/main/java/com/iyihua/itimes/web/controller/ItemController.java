@@ -1,4 +1,6 @@
 package com.iyihua.itimes.web.controller;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +26,25 @@ public class ItemController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<ItemDTO> findItemsByUser() {
-		
+
 		Long userId = loginSessionManager.getSessionUserId();
 		return itemService.findItemsByUserId(userId);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ItemDTO addItem(@RequestBody ItemDTO item) {
+		item.setUserId(loginSessionManager.getSessionUserId());
+		Date date = item.getDate();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		String year = String.valueOf(calendar.get(Calendar.YEAR));
+		String month = String.valueOf(calendar.get(Calendar.MONTH) + 1);
+		String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+		String week = String.valueOf(calendar.get(Calendar.DAY_OF_WEEK) - 1);
+		item.setYear(year);
+		item.setMonth(month);
+		item.setDay(day);
+		item.setWeek(week);
 		return itemService.saveItem(item);
 	}
 
@@ -44,19 +58,21 @@ public class ItemController {
 	public void deleteItem(@PathVariable Long id) {
 		itemService.deleteItem(id);
 	}
-	
-//	@RequestMapping(value = "/list", method = RequestMethod.GET)
-//	public ItemListDTO listItems(String last) {
-//		Integer type = 0;
-//		Date lastDate = DateUtil.parseToDate(last, DateUtil.SIMPLE_PATTERN);
-//		Date next = DateUtil.addDateByDays(lastDate, 1);
-//		ItemListDTO list = itemService.listNext(new ItemListDTO(loginSessionManager.getSessionUserId(), type, next, next, DateUtil.addDateByDays(next, 1), null));
-//		return list;
-//	}
-	
+
+	// @RequestMapping(value = "/list", method = RequestMethod.GET)
+	// public ItemListDTO listItems(String last) {
+	// Integer type = 0;
+	// Date lastDate = DateUtil.parseToDate(last, DateUtil.SIMPLE_PATTERN);
+	// Date next = DateUtil.addDateByDays(lastDate, 1);
+	// ItemListDTO list = itemService.listNext(new
+	// ItemListDTO(loginSessionManager.getSessionUserId(), type, next, next,
+	// DateUtil.addDateByDays(next, 1), null));
+	// return list;
+	// }
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public Page<ItemDTO> listItems(Integer page) {
-		
+
 		UserItemQueryDTO query = new UserItemQueryDTO();
 		query.setPage((page != null && page > -1) ? page : 0);
 		query.setUserId(loginSessionManager.getSessionUserId());

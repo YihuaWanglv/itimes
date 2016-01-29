@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Tags implements Serializable {
+public class Tag implements Serializable {
 
 	
 	private static final long serialVersionUID = 7525327812218240005L;
@@ -21,10 +21,10 @@ public class Tags implements Serializable {
 	private Long userId;
 	
 	
-	public Tags() {
+	public Tag() {
 		super();
 	}
-	public Tags(Long tagId, String tagName, Long userId) {
+	public Tag(Long tagId, String tagName, Long userId) {
 		super();
 		this.tagId = tagId;
 		this.tagName = tagName;

@@ -8,25 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.iyihua.itimes.model.Tags;
-import com.iyihua.itimes.repository.TagsRepository;
-import com.iyihua.model.base.TagsDTO;
-import com.iyihua.remote.base.TagsRemote;
+import com.iyihua.itimes.model.Tag;
+import com.iyihua.itimes.repository.TagRepository;
+import com.iyihua.model.base.TagDTO;
+import com.iyihua.remote.base.TagRemote;
 
 @Service
-public class TagsService implements TagsRemote {
+public class TagService implements TagRemote {
 
 	@Autowired
-	TagsRepository tagsRepository;
+	TagRepository tagRepository;
 	
 	@Override
-	public List<TagsDTO> findTagsByUserId(Long userId) {
+	public List<TagDTO> findTagsByUserId(Long userId) {
 		Assert.notNull(userId, "userId can not be null!");
-		List<TagsDTO> result = new ArrayList<TagsDTO>();
-		List<Tags> tags = tagsRepository.findByUserId(userId);
+		List<TagDTO> result = new ArrayList<TagDTO>();
+		List<Tag> tags = tagRepository.findByUserId(userId);
 		if (tags != null && tags.size() > 0) {
-			for (Tags tag : tags) {
-				TagsDTO dto = new TagsDTO();
+			for (Tag tag : tags) {
+				TagDTO dto = new TagDTO();
 				BeanUtils.copyProperties(tag, dto);
 				result.add(dto);
 			}
@@ -35,17 +35,17 @@ public class TagsService implements TagsRemote {
 	}
 
 	@Override
-	public TagsDTO saveTags(TagsDTO tags) {
-		Tags save = new Tags();
+	public TagDTO saveTags(TagDTO tags) {
+		Tag save = new Tag();
 		BeanUtils.copyProperties(tags, save);
-		save = tagsRepository.save(save);
+		save = tagRepository.save(save);
 		BeanUtils.copyProperties(save, tags);
 		return tags;
 	}
 
 	@Override
 	public void deleteTags(Long tagsId) {
-		tagsRepository.delete(tagsId);
+		tagRepository.delete(tagsId);
 	}
 
 }

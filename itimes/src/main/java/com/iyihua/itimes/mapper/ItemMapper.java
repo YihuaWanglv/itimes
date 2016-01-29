@@ -16,7 +16,7 @@ public interface ItemMapper {
 
 	// @Select("select * from items where state = #{state}")
 	// City findByState(@Param("state") String state);
-	@Select("select * from items")
+	@Select("select * from item")
 	List<Item> findAll();
 	
 //	@SelectProvider(type = SampleProvider.class,  

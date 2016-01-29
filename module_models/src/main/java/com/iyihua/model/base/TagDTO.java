@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.iyihua.model.component.FieldExtend;
 
-public class TagsDTO implements Serializable {
+public class TagDTO implements Serializable {
 
 	private static final long serialVersionUID = 7525327812218241005L;
 	private Long tagId;
@@ -13,11 +13,11 @@ public class TagsDTO implements Serializable {
 
 	private FieldExtend fieldExtend = new FieldExtend();
 
-	public TagsDTO() {
+	public TagDTO() {
 		super();
 	}
 
-	public TagsDTO(Long tagId, String tagName, Long userId) {
+	public TagDTO(Long tagId, String tagName, Long userId) {
 		super();
 		this.tagId = tagId;
 		this.tagName = tagName;

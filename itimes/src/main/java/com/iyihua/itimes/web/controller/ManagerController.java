@@ -13,12 +13,12 @@ import com.iyihua.itimes.component.security.LoginSessionManager;
 import com.iyihua.model.base.CategoryDTO;
 import com.iyihua.model.base.LocationDTO;
 import com.iyihua.model.base.ProjectDTO;
-import com.iyihua.model.base.TagsDTO;
+import com.iyihua.model.base.TagDTO;
 import com.iyihua.model.base.UserDTO;
 import com.iyihua.remote.base.CategoryRemote;
 import com.iyihua.remote.base.LocationRemote;
 import com.iyihua.remote.base.ProjectRemote;
-import com.iyihua.remote.base.TagsRemote;
+import com.iyihua.remote.base.TagRemote;
 
 @RestController
 @RequestMapping("/manager")
@@ -31,7 +31,7 @@ public class ManagerController {
 	@Autowired
 	LocationRemote locationService;
 	@Autowired
-	TagsRemote tagsService;
+	TagRemote tagService;
 	
 	@Autowired
 	LoginSessionManager loginSessionManager;
@@ -116,27 +116,27 @@ public class ManagerController {
 	}
 	
 	@RequestMapping(value = "/tag", method = RequestMethod.GET)
-	public List<TagsDTO> listTags() {
+	public List<TagDTO> listTags() {
 		Long userId = loginSessionManager.getSessionUserId();
-		return tagsService.findTagsByUserId(userId);
+		return tagService.findTagsByUserId(userId);
 	}
 	
 	@RequestMapping(value = "/tag", method = RequestMethod.POST)
-	public TagsDTO createTag(@RequestBody TagsDTO tag) {
+	public TagDTO createTag(@RequestBody TagDTO tag) {
 		Long userId = loginSessionManager.getSessionUserId();
 		tag.setUserId(userId);
-		return tagsService.saveTags(tag);
+		return tagService.saveTags(tag);
 	}
 	
 	@RequestMapping(value = "/tag/{tagId}", method = RequestMethod.PUT)
-	public TagsDTO updateTag(@RequestBody TagsDTO tag, @PathVariable Long tagId) {
+	public TagDTO updateTag(@RequestBody TagDTO tag, @PathVariable Long tagId) {
 		tag.setTagId(tagId);
-		return tagsService.saveTags(tag);
+		return tagService.saveTags(tag);
 	}
 	
 	@RequestMapping(value = "/tag/{tagId}", method = RequestMethod.DELETE)
 	public void deleteTag(@PathVariable Long tagId) {
-		tagsService.deleteTags(tagId);
+		tagService.deleteTags(tagId);
 	}
 	
 }

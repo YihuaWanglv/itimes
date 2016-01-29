@@ -24,7 +24,7 @@
 		<result column="result" property="result"/>
 	</resultMap>
 	<sql id="findItemsByParamsCommon">
-		from items i where 1=1
+		from item i where 1=1
 		<if test="userId != null">
 			and i.user_id = #{userId}
 		</if>
@@ -89,13 +89,13 @@
 	</select>
 
 	<select id="selectItemById" resultType="Item">
-		select * from items where
+		select * from item where
 		item_id = #{id}
 	</select>
 	
 	<sql id="listItemsCommon">
 		from (
-			select t.* from items t where t.user_id=#{userId} order by t.date desc, t.item_id desc
+			select t.* from item t where t.user_id=#{userId} order by t.date desc, t.item_id desc
 		) as i where 1=1
 		<if test="categoryId != null">
 			and i.category_id = #{categoryId}
