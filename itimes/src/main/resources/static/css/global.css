@@ -9,11 +9,12 @@ h1 {
 }
 
 body .content-list {
-	font-family: /* Comic Sans MS,  */ Georgia, Century Gothic, Futura,
+	font-family: Lato, "PingFang SC", Georgia, Century Gothic, Futura,
 		STXihei, "华文细黑", "Microsoft YaHei", Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	/* font-weight: 200;
 	line-height: 30px; */
+	border-bottom: 1px dashed #ccc;
 }
 
 body .font-header {
@@ -109,3 +110,41 @@ div.ui-select-container .btn-default {
 .navbar-default .navbar-nav>li>a {
 	color: #000; Change active text color here
 } */
+
+/* .container .content-list::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 6px;
+  height: 6px;
+  margin-left: -4px;
+  background: #bbb;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  transition-property: background;
+} */
+.container .content-group-title {
+    position: relative;
+    top: 3px;
+    left: 20px;
+}
+.container .content-group {
+    position: relative;
+    margin: 60px 0;
+}
+.container .content-group::before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-left: -4px;
+    margin-top: -4px;
+    width: 8px;
+    height: 8px;
+    background: #bbb;
+    border-radius: 50%;
+}
