@@ -5,6 +5,7 @@
     $scope.page = 1;
     $scope.newDate = new Date();
     $scope.newItem = initNewItem();
+    $scope.showing;
     $http.get('/items/list',{params: {page:$scope.page}})
     .success(function(data, status, headers, config){
       $scope.items = (data&&data.items)?data.items:[];
@@ -31,6 +32,21 @@
     $scope.listNext = function() {
       $scope.page++;
       listItem();
+    }
+    $scope.showItemDate = function(_date) {
+      var flag = false;
+      if (_date) {
+        if (!$scope.showing) {
+          $scope.showing = _date;
+          flag = true;
+        } else {
+          if (_date !== $scope.showing) {
+            flag = true;
+            $scope.showing = _date;
+          }
+        }
+      }
+      return flag;
     }
     
     $scope.createItem = function(_item) {

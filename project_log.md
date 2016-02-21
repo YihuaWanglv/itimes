@@ -1,14 +1,22 @@
 # itimes 开发计划与进度记录
 
 ## [todo]
-- http://www.htmleaf.com/jQuery/Menu-Navigation/201601082998.html
-- 使用aop或注解的方式实现清空或重载缓存
-- Item列表首页的展示和实现
+本周末完成
+- item页，删除功能修复
+- item页，下一页从加载下一页，改为读取下一页再粘贴再上一页下面
+- 配置页面，完善
+
+- item页，编辑功能实现
 - 密码加密
+- 注册后台功能，并接入前台界面，完成注册功能
 - redis集成，分布式session共享
 - 加入针对资源级别的认证
 
 ## [done]
+【2016.02.21】- 注册页，开发 - ok
+【2016.02.20】- 使用aop或注解的方式实现清空或重载缓存
+【2016.02.20】- Item列表首页的展示和实现
+【2016.02.20】- http://www.htmleaf.com/jQuery/Menu-Navigation/201601082998.html
 【2016.01.24】bower install --save angular-ui-utils
 【2016.01.20】- 登录后保存用户id到session
 【2016.01.20】- 使用mysql jdbcRealm替换原来的propertiesRealm

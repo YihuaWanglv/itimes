@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./bower_components/angular-ui-select/dist/select.min.css" />
     <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/item.css" />
     <!--[if lt IE 9]>
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
@@ -79,29 +80,35 @@
           </div>
         </div>
         <hr />
-        <div class="content-group">
-          <span class="content-group-title"> list</span>
-        </div>
-        <div class="input-group content-list" ng-repeat="item in items">
-          
-          <span ng-if="!item.editting">{{item.date | date:'yyyy-MM-dd'}} </span>
-          <span ng-if="!item.editting">{{item.categoryName}} </span>
-          <span ng-if="!item.editting">{{item.projectName}} </span>
-          <span ng-if="!item.editting">{{item.locationName}} </span>
-          <span ng-if="!item.editting">{{item.item}}</span>
-          <input type="text" class="form-control" ng-model="item.item" ng-if="item.editting">
-          <div class="input-group-btn">
-            <button class="btn btn-default btn-danger" type="button" title="Delete" ng-if="!item.editting" ng-click="deleteItem(item)">
-              <span class="glyphicon glyphicon-trash"></span>
-            </button>
-            <button class="btn btn-default btn-primary" type="button" title="Edit" ng-if="!item.editting" ng-click="changeButtonFlag(item);">
-              <span class="glyphicon glyphicon-edit"></span>
-            </button>
-            <button class="btn btn-default btn-success" type="button" title="Update" ng-if="item.editting" ng-click="changeButtonFlag(item);updateItem(item)">
-              <span class="glyphicon glyphicon-ok"></span>
-            </button>
+        <div ng-repeat="item in items">
+          <div class="content-group" ng-if="showItemDate(item.date)">
+            <span class="content-group-title">{{item.date | date:'yyyy-MM-dd'}}</span>
+          </div>
+          <div class="input-group content-list" >
+            
+            <div class="content-list-main">
+              <span ng-if="!item.editting">{{item.date | date:'yyyy-MM-dd'}} </span>
+              <span ng-if="!item.editting">{{item.categoryName}} </span>
+              <span ng-if="!item.editting">{{item.projectName}} </span>
+              <span ng-if="!item.editting">{{item.locationName}} </span>
+              <span ng-if="!item.editting">{{item.item}}</span>
+              <input type="text" class="form-control" ng-model="item.item" ng-if="item.editting">
+            </div>
+            
+            <div class="input-group-btn">
+              <button class="btn btn-default btn-danger" type="button" title="Delete" ng-if="!item.editting" ng-click="deleteItem(item)">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <button class="btn btn-default btn-primary" type="button" title="Edit" ng-if="!item.editting" ng-click="changeButtonFlag(item);">
+                <span class="glyphicon glyphicon-edit"></span>
+              </button>
+              <button class="btn btn-default btn-success" type="button" title="Update" ng-if="item.editting" ng-click="changeButtonFlag(item);updateItem(item)">
+                <span class="glyphicon glyphicon-ok"></span>
+              </button>
+            </div>
           </div>
         </div>
+        
         <a class="pull-left" href="">往后</a><span class="center-block">page {{page}}</span><a class="pull-right" ng-click="listNext()" href="javascript:void(0);">往前</a>
       </form>
     </div>
