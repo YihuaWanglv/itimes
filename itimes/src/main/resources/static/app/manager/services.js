@@ -41,9 +41,9 @@
       }
     });
   });
-  angular.module('manager.services').factory('Item', function($resource) {
-    return $resource('/items/:itemId', {
-      itemId: '@itemId'
+  angular.module('manager.services').factory('Location', function($resource) {
+    return $resource('/manager/location/:locationId', {
+      locationId: '@locationId'
     }, {
       update: {
         method: "PUT"

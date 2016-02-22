@@ -34,3 +34,14 @@ body .content-list .content-list-main {
     background: #bbb;
     border-radius: 50%;
 }
+
+.container .content-list-footer {
+    padding-top: 30px;
+}
+.container .content-list-footer .content-list-footer-center {
+    margin: 0 auto;
+    float: none;
+}
+.text-center {
+    text-align: center;
+}

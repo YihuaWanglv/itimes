@@ -48,15 +48,15 @@ public class ItemController {
 		return itemService.saveItem(item);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ItemDTO updateItem(@RequestBody ItemDTO updatedItem, @PathVariable Long id) {
-		updatedItem.setItemId(id);
+	@RequestMapping(value = "/{itemId}", method = RequestMethod.PUT)
+	public ItemDTO updateItem(@RequestBody ItemDTO updatedItem, @PathVariable Long itemId) {
+		updatedItem.setItemId(itemId);
 		return itemService.saveItem(updatedItem);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteItem(@PathVariable Long id) {
-		itemService.deleteItem(id);
+	@RequestMapping(value = "/{itemId}", method = RequestMethod.DELETE)
+	public void deleteItem(@PathVariable Long itemId) {
+		itemService.deleteItem(itemId);
 	}
 
 	// @RequestMapping(value = "/list", method = RequestMethod.GET)

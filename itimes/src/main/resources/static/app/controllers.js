@@ -3,6 +3,7 @@
 
   var ItemController = function($scope, $http, $filter, Item, Category, Project, Location, Tag) {
     $scope.page = 1;
+    $scope.nomore = 0;
     $scope.newDate = new Date();
     $scope.newItem = initNewItem();
     $scope.showing;
@@ -15,9 +16,19 @@
       alert('load failed');
     });
     var listItem = function() {
+      $scope.page++;
       $http.get('/items/list',{params: {page:$scope.page}})
       .success(function(data, status, headers, config){
-        $scope.items = (data&&data.items)?data.items:[];
+        // $scope.items = (data&&data.items)?data.items:[];
+        if (data&&data.items) {
+          if (data.items.length > 0) {
+            $scope.items = $scope.items.concat(data.items);
+          } else {
+            $scope.nomore = 1;
+          }
+        } else {
+          $scope.nomore = 1;
+        }
       })
       .error(function(data, status, headers, config){
         $scope.items = [];
@@ -30,7 +41,7 @@
       return {item:''};
     }
     $scope.listNext = function() {
-      $scope.page++;
+      
       listItem();
     }
     $scope.showItemDate = function(_date) {
@@ -72,7 +83,26 @@
       item.$update();
     }
     $scope.deleteItem = function(item) {
-      item.$remove(function(){
+      // item.$remove(function(){
+      //   $scope.items.splice($scope.items.indexOf(item),1);
+      // });
+      // console.log('---');
+      // console.log(item.itemId);
+      // $http({
+      //   method: 'DELETE',
+      //   url: '/items'
+      // }).then(function successCallback(response) {
+      //   // this callback will be called asynchronously
+      //   // when the response is available
+      //   $scope.items.splice($scope.items.indexOf(item),1);
+      // }, function errorCallback(response) {
+      //   // called asynchronously if an error occurs
+      //   // or server returns response with an error status.
+      //   alert('delete failed!');
+      // });
+      $http.delete('/items/' + item.itemId, {}).success(function (data, status) {
+        // console.log(data);
+        console.log('success');
         $scope.items.splice($scope.items.indexOf(item),1);
       });
     }
@@ -96,10 +126,12 @@
 
   }
  
-  angular.module("myApp.controllers").controller("ItemController"
-    , [
-      '$scope', '$http', '$filter', 'Item', 'Category', 'Project', 'Location', 'Tag'
-      , ItemController
-    ]
-  );
+  // angular.module("myApp.controllers").controller("ItemController"
+  //   , [
+  //     '$scope', '$http', '$filter', 'Item', 'Category', 'Project', 'Location', 'Tag'
+  //     , ItemController
+  //   ]
+  // );
+  ItemController.$inject = ['$scope', '$http', '$filter', 'Item', 'Category', 'Project', 'Location', 'Tag'];
+  angular.module("myApp.controllers").controller("ItemController", ItemController);
 }(angular));
