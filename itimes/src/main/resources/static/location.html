@@ -26,17 +26,16 @@
         </div>
         <hr />
         <div class="input-group" ng-repeat="location in locations">
-          <span >{{location.locationId}}</span>
           <span ng-if="!location.editting">{{location.location}}</span>
           <input type="text" class="form-control" ng-model="location.location" ng-if="location.editting">
           <div class="input-group-btn">
-              <button class="btn btn-default btn-danger" type="button" title="Delete" ng-if="!location.editting" ng-click="deletelocation(location)">
+              <button class="btn btn-default btn-danger" type="button" title="Delete" ng-if="!location.editting" ng-click="deleteLocation(location)">
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
               <button class="btn btn-default btn-primary" type="button" title="Edit" ng-if="!location.editting" ng-click="changeButtonFlag(location);">
                 <span class="glyphicon glyphicon-edit"></span>
               </button>
-              <button class="btn btn-default btn-success" type="button" title="Update" ng-if="location.editting" ng-click="changeButtonFlag(location);updatelocation(location)">
+              <button class="btn btn-default btn-success" type="button" title="Update" ng-if="location.editting" ng-click="changeButtonFlag(location);updateLocation(location)">
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
             </div>

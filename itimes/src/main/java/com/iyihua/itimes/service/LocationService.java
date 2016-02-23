@@ -36,7 +36,7 @@ public class LocationService implements LocationRemote {
 
 	@Override
 	public LocationDTO saveLocation(LocationDTO location) {
-		Assert.isNull(location, "Location can not be null!");
+		Assert.notNull(location, "Location can not be null!");
 		Location save = new Location();
 		BeanUtils.copyProperties(location, save);
 		save = locationRepository.save(save);

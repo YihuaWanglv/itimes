@@ -56,7 +56,7 @@
     });
     $scope.createLocation = function(locationName) {
       new Location({
-        locationName: locationName
+        location: locationName
       }).$save(function(location) {
         $scope.locations.push(location);
       });
