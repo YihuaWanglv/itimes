@@ -8,7 +8,10 @@ import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RedisCacheManager implements CacheManager {
 
 	private static final Logger logger = LoggerFactory
@@ -17,6 +20,7 @@ public class RedisCacheManager implements CacheManager {
 	// fast lookup by name map
 	private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
 
+	@Autowired
 	private RedisManager redisManager;
 
 	/**

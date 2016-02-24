@@ -2,10 +2,13 @@ package com.iyihua.itimes.config.redis;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+@Component
 public class RedisManager {
 	
 	private String host = "127.0.0.1";

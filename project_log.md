@@ -1,13 +1,14 @@
 # itimes 开发计划与进度记录
 
 ## [todo]
-https://github.com/alexxiyang/shiro-redis.git
+
 - item页，编辑功能实现
 - 注册后台功能，并接入前台界面，完成注册功能
-- redis集成，分布式session共享
 - 加入针对资源级别的认证
 
 ## [done]
+【2016.02.24】- redis集成，分布式session共享
+    https://github.com/alexxiyang/shiro-redis.git
 【2016.02.23】- 密码加密
 【2016.02.23】- 配置页面，完善
 【2016.02.22】- item页，下一页从加载下一页，改为读取下一页再粘贴再上一页下面

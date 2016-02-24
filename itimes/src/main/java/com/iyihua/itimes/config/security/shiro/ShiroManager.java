@@ -19,13 +19,20 @@ package com.iyihua.itimes.config.security.shiro;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.DefaultSecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
+
+import com.iyihua.itimes.config.redis.RedisCacheManager;
+import com.iyihua.itimes.config.redis.RedisManager;
+import com.iyihua.itimes.config.redis.RedisSessionDAO;
 
 /**
  * Shiro Config Manager.
@@ -55,17 +62,35 @@ public class ShiroManager {
 	/**
 	 * 用户授权信息Cache
 	 */
-	@Bean(name = "cacheManager")
+//	@Bean(name = "cacheManager")
+//	@ConditionalOnMissingBean
+//	public CacheManager cacheManager() {
+//		RedisCacheManager rcm = new RedisCacheManager();
+//		return rcm;
+////		return new MemoryConstrainedCacheManager();
+//	}
+	
+//	@Bean(name = "sessionDAO")
+//	@ConditionalOnMissingBean
+//	public SessionDAO sessionDAO(SessionDAO sessionDAO) {
+//		RedisSessionDAO rsd = new RedisSessionDAO();
+//		return rsd;
+//	}
+	
+	@Bean(name = "sessionManager")
 	@ConditionalOnMissingBean
-	public CacheManager cacheManager() {
-		return new MemoryConstrainedCacheManager();
+	public SessionManager sessionManager(SessionDAO sessionDAO) {
+		DefaultWebSessionManager sm = new DefaultWebSessionManager();
+		sm.setSessionDAO(sessionDAO);
+		return sm;
 	}
 
 	@Bean(name = "securityManager")
 	@ConditionalOnMissingBean
-	public DefaultSecurityManager securityManager(CacheManager cacheManager) {
+	public DefaultSecurityManager securityManager(CacheManager cacheManager, SessionManager sessionManager) {
 		DefaultSecurityManager sm = new DefaultWebSecurityManager();
 		sm.setCacheManager(cacheManager);
+		sm.setSessionManager(sessionManager);
 		return sm;
 	}
 

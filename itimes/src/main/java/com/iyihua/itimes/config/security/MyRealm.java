@@ -56,7 +56,7 @@ public class MyRealm extends AuthorizingRealm {
 			// 此处传入的第一个参数为user对象，那么我们在页面可以通过这样的方式来获取用户名：<shiro:principal
 			// property="username"/>
 //			return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
-			return new SimpleAuthenticationInfo(user.getName(), user.getPassword(), getName());
+			return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
 			// return new SimpleAuthenticationInfo(user, user.getPassword(),
 			// ByteSource.Util.bytes(user.getSalt()), getName());
 		}
