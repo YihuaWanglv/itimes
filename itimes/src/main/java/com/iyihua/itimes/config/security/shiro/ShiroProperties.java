@@ -47,6 +47,22 @@ public class ShiroProperties {
 	 * filter chain
 	 */
 	private Map<String, String> filterChainDefinitions;
+	/**
+	 * 是否开启同域及其子域的session共享，跨域Jsession共享
+	 */
+	private String enableShareJsession;
+	/**
+	 * 跨域Jsession共享的cookie名称
+	 */
+	private String shareJsessionKey;
+	/**
+	 * 跨域Jsession共享的域名
+	 */
+	private String domain;
+	/**
+	 * 跨域Jsession共享的path
+	 */
+	private String path;
 
 
 	public Class<?> getRealm() {
@@ -78,6 +94,30 @@ public class ShiroProperties {
 	}
 	public void setFilterChainDefinitions(Map<String, String> filterChainDefinitions) {
 		this.filterChainDefinitions = filterChainDefinitions;
+	}
+	public String getDomain() {
+		return domain;
+	}
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+	public String getEnableShareJsession() {
+		return enableShareJsession;
+	}
+	public void setEnableShareJsession(String enableShareJsession) {
+		this.enableShareJsession = enableShareJsession;
+	}
+	public String getShareJsessionKey() {
+		return shareJsessionKey;
+	}
+	public void setShareJsessionKey(String shareJsessionKey) {
+		this.shareJsessionKey = shareJsessionKey;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
 	
 	

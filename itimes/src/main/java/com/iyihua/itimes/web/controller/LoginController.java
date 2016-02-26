@@ -3,7 +3,6 @@ package com.iyihua.itimes.web.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,10 +39,6 @@ public class LoginController {
 			req.setAttribute("error", error);
 			resp.sendRedirect("/forbidden.html");
 		} else {// 登录成功
-		// req.getRequestDispatcher("/index.html").forward(req, resp);
-			Cookie c = new Cookie("islogin","1");
-			c.setDomain(".timeitem.com");//注意是以点号开头的.
-			resp.addCookie(c);
 			resp.sendRedirect("/index.html");// 设置跳转的页面
 		}
 	}

@@ -17,7 +17,6 @@
 package com.iyihua.itimes.config.security.shiro;
 
 import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -30,16 +29,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
 
-import com.iyihua.itimes.config.redis.RedisCacheManager;
-import com.iyihua.itimes.config.redis.RedisManager;
-import com.iyihua.itimes.config.redis.RedisSessionDAO;
-
 /**
  * Shiro Config Manager.
  * 
  * @author Boya
  */
 public class ShiroManager {
+	
 	/**
 	 * 保证实现了Shiro内部lifecycle函数的bean执行
 	 */
@@ -82,6 +78,12 @@ public class ShiroManager {
 	public SessionManager sessionManager(SessionDAO sessionDAO) {
 		DefaultWebSessionManager sm = new DefaultWebSessionManager();
 		sm.setSessionDAO(sessionDAO);
+//		Cookie c = new SimpleCookie();
+//		c.setDomain(".timeitem.com");
+//		c.setPath("/");
+//		c.setName("SHAREJSESSIONID");
+//		c.setHttpOnly(true);
+//		sm.setSessionIdCookie(c);
 		return sm;
 	}
 
@@ -91,6 +93,8 @@ public class ShiroManager {
 		DefaultSecurityManager sm = new DefaultWebSecurityManager();
 		sm.setCacheManager(cacheManager);
 		sm.setSessionManager(sessionManager);
+		
+		
 		return sm;
 	}
 

@@ -11,3 +11,7 @@ shiro:
     "/auth": anon
     "/logout": logout
     "/**": authc
+  enableShareJsession: true
+  shareJsessionKey: SHAREJSESSIONID
+  domain: .timeitem.com
+  path: /

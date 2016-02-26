@@ -21,6 +21,9 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.servlet.Cookie;
+import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -30,7 +33,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Import;
 
-import com.iyihua.itimes.config.security.CustomCredentialsMatcher;
 import com.iyihua.itimes.config.security.MyRealm;
 
 @Configuration
@@ -72,6 +74,18 @@ public class ShiroAutoConfiguration {
 
 		securityManager.setRealm(myRealm);
 
+		// 设置跨域session共享,目前支持父域以及其子域下的session共享
+		String enableShare = properties.getEnableShareJsession();
+		if (enableShare != null) {
+			DefaultWebSessionManager sessionManager = (DefaultWebSessionManager) securityManager.getSessionManager();
+			Cookie c = new SimpleCookie();
+			c.setDomain(properties.getDomain());
+			c.setPath(properties.getPath());
+			c.setName(properties.getShareJsessionKey());
+			c.setHttpOnly(true);
+			sessionManager.setSessionIdCookie(c);
+		}
+		
 		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
 		shiroFilter.setSecurityManager(securityManager);
 		shiroFilter.setLoginUrl(properties.getLoginUrl());
