@@ -48,19 +48,19 @@ public class ShiroProperties {
 	 */
 	private Map<String, String> filterChainDefinitions;
 	/**
-	 * ÊÇ·ñ¿ªÆôÍ¬Óò¼°Æä×ÓÓòµÄsession¹²Ïí£¬¿çÓòJsession¹²Ïí
+	 * æ˜¯å¦å¼€å¯åŒåŸŸåŠå…¶å­åŸŸçš„sessionå…±äº«ï¼Œè·¨åŸŸJsessionå…±äº«
 	 */
 	private String enableShareJsession;
 	/**
-	 * ¿çÓòJsession¹²ÏíµÄcookieÃû³Æ
+	 * è·¨åŸŸJsessionå…±äº«çš„cookieåç§°
 	 */
 	private String shareJsessionKey;
 	/**
-	 * ¿çÓòJsession¹²ÏíµÄÓòÃû
+	 * è·¨åŸŸJsessionå…±äº«çš„åŸŸå
 	 */
 	private String domain;
 	/**
-	 * ¿çÓòJsession¹²ÏíµÄpath
+	 * è·¨åŸŸJsessionå…±äº«çš„path
 	 */
 	private String path;
 

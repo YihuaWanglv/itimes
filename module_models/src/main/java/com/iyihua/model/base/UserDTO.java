@@ -1,4 +1,3 @@
-
 package com.iyihua.model.base;
 
 import java.io.Serializable;
@@ -13,6 +12,11 @@ public class UserDTO implements Serializable {
 	private String name;
 	private String password;
 	private Integer type;
+	private String salt;
+	private String email;
+	private String mobile;
+	private Integer deleted;
+	private Integer enable;
 
 	private FieldExtend fieldExtend = new FieldExtend();
 
@@ -23,6 +27,20 @@ public class UserDTO implements Serializable {
 	public UserDTO(Long id, String name, Integer type) {
 		super();
 		this.name = name;
+	}
+	
+	public UserDTO(Long id, String name, String password, Integer type, String salt, String email, String mobile, Integer deleted, Integer enable, FieldExtend fieldExtend) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.type = type;
+		this.salt = salt;
+		this.email = email;
+		this.mobile = mobile;
+		this.deleted = deleted;
+		this.enable = enable;
+		this.fieldExtend = fieldExtend;
 	}
 
 	public String getName() {
@@ -48,14 +66,13 @@ public class UserDTO implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public FieldExtend getFieldExtend() {
 		return fieldExtend;
 	}
 	public void setFieldExtend(FieldExtend fieldExtend) {
 		this.fieldExtend = fieldExtend;
 	}
-	
 
 	public String getPassword() {
 		return password;
@@ -63,6 +80,46 @@ public class UserDTO implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public Integer getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
+	}
+
+	public Integer getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Integer enable) {
+		this.enable = enable;
 	}
 
 	@Override

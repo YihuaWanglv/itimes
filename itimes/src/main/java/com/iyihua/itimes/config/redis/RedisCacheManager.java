@@ -18,6 +18,7 @@ public class RedisCacheManager implements CacheManager {
 			.getLogger(RedisCacheManager.class);
 
 	// fast lookup by name map
+	@SuppressWarnings("rawtypes")
 	private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
 
 	@Autowired
@@ -46,6 +47,7 @@ public class RedisCacheManager implements CacheManager {
 		this.keyPrefix = keyPrefix;
 	}
 	
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	@Override
 	public <K, V> Cache<K, V> getCache(String name) throws CacheException {
 		logger.debug("获取名称为: " + name + " 的RedisCache实例");

@@ -1,9 +1,14 @@
 package com.iyihua.itimes.service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import util.PasswordSecureHash;
 
 import com.iyihua.itimes.model.User;
 import com.iyihua.itimes.repository.UserRepository;
@@ -29,10 +34,13 @@ public class UserService implements UserRemote {
 	}
 
 	@Override
-	public UserDTO createUser(UserDTO user) {
-		Assert.isNull(user, "User can not be null!");
+	public UserDTO createUser(UserDTO user) throws NoSuchAlgorithmException, InvalidKeySpecException {
+		Assert.notNull(user, "User can not be null!");
 		User save = new User();
 		BeanUtils.copyProperties(user, save);
+		String salt = PasswordSecureHash.createRandom();
+		save.setPassword(PasswordSecureHash.hashEncrypt(user.getPassword(), salt));
+		save.setSalt(salt);
 		save = userRepository.save(save);
 		BeanUtils.copyProperties(save, user);
 		return user;

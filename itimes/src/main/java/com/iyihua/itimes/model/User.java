@@ -1,4 +1,3 @@
-
 package com.iyihua.itimes.model;
 
 import java.io.Serializable;
@@ -19,13 +18,24 @@ public class User implements Serializable {
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private String password;
 
 	@Column(nullable = false)
 	private Integer type;
 
+	@Column(nullable = false)
+	private String salt;
+
+	@Column(nullable = false)
+	private String email;
+	@Column
+	private String mobile;
+	@Column()
+	private Integer deleted;
+	@Column()
+	private Integer enable;
 	public User() {
 		super();
 	}
@@ -35,10 +45,22 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
+	public User(Long id, String name, String password, Integer type, String salt, String email, String mobile, Integer deleted, Integer enable) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.type = type;
+		this.salt = salt;
+		this.email = email;
+		this.mobile = mobile;
+		this.deleted = deleted;
+		this.enable = enable;
+	}
+
 	public String getName() {
 		return this.name;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -59,7 +81,7 @@ public class User implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -68,10 +90,49 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public Integer getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
+	}
+
+	public Integer getEnable() {
+		return enable;
+	}
+
+	public void setEnable(Integer enable) {
+		this.enable = enable;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", password=" + password + ", type=" + type + "]";
 	}
 
-	
 }
