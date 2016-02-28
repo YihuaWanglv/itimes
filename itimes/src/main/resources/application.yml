@@ -6,8 +6,13 @@ shiro:
   filterChainDefinitions:
     "/login": anon
     "/view/sign-in": anon
+    "/sign-up": anon
+    "/user": anon
     "/view/**": anon
     "/static/**": anon
+    "/bower_components/**": anon
+    "/app/**": anon
+    "/lib/**": anon
     "/auth": anon
     "/logout": logout
     "/**": authc

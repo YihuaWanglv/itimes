@@ -13,6 +13,7 @@ import util.PasswordSecureHash;
 import com.iyihua.itimes.model.User;
 import com.iyihua.itimes.repository.UserRepository;
 import com.iyihua.model.base.UserDTO;
+import com.iyihua.model.component.SaveOperation;
 import com.iyihua.remote.base.UserRemote;
 
 @Service
@@ -60,6 +61,21 @@ public class UserService implements UserRemote {
 			BeanUtils.copyProperties(user, result);
 		}
 		return result;
+	}
+
+
+	@Override
+	public UserDTO updateUser(UserDTO user, Boolean isUpdateSelected) throws NoSuchAlgorithmException, InvalidKeySpecException {
+		Assert.notNull(user, "User can not be null!");
+		User save = new User();
+		if (isUpdateSelected != null && isUpdateSelected) {
+			// update user selected
+		} else {
+			BeanUtils.copyProperties(user, save);
+			save = userRepository.save(save);
+			BeanUtils.copyProperties(save, user);
+		}
+		return user;
 	}
 
 	

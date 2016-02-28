@@ -16,4 +16,6 @@ public interface UserRemote {
 	public void deleteUser(Long id); 
 	
 	public UserDTO findUserByName(String username);
+	
+	public UserDTO updateUser(UserDTO user, Boolean isUpdateSelected) throws NoSuchAlgorithmException, InvalidKeySpecException;
 }
