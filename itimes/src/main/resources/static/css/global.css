@@ -34,8 +34,12 @@ div.ui-select-container .btn-default {
 } */
 
 .starter-template {
-	padding: 40px 15px;
+	padding: 40px 0 0 0;
 	text-align: center;
+	height:100vh;
+}
+.jumbotron {
+	height:100%;
 }
 
 /*
@@ -93,4 +97,5 @@ div.ui-select-container .btn-default {
 	/* border: 8px solid transparent;
 	border-right-color: #f1f1f1; */
 }
+
 
