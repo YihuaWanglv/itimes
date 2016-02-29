@@ -2,6 +2,8 @@ package com.iyihua.bootdemo;
 
 
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.iyihua.itimes.App;
 import com.iyihua.itimes.mapper.user.UserRoleMapper;
+import com.iyihua.model.base.UserDTO;
+import com.iyihua.remote.base.UserRemote;
 
 /**
  * Unit test for simple App.
@@ -42,19 +46,34 @@ public class AppTest {
 //	    subject.logout();  
 //	}
 	
-	@Autowired
-	UserRoleMapper userRoleMapper;
-	
-	@Test
-	public void TestRole() {
-		
-		List<String> roles = userRoleMapper.findByUserId(1L);
-		if (roles != null && roles.size() > 0) {
-			for (String role : roles) {
-				System.err.println("role= " + role);
-			}
-		} else {
-			System.err.println("null--------------------");
-		}
-	}
+//	@Autowired
+//	UserRoleMapper userRoleMapper;
+//	
+//	@Test
+//	public void TestRole() {
+//		
+//		List<String> roles = userRoleMapper.findByUserId(1L);
+//		if (roles != null && roles.size() > 0) {
+//			for (String role : roles) {
+//				System.err.println("role= " + role);
+//			}
+//		} else {
+//			System.err.println("null--------------------");
+//		}
+//	}
+//	@Autowired
+//	UserRemote userService;
+//	@Test
+//	public void TestUserSave() throws NoSuchAlgorithmException, InvalidKeySpecException {
+//		
+//		UserDTO user = new UserDTO();
+//		user.setName("test");
+//		user.setPassword("123456");
+//		user.setType(0);
+//		user.setEmail("619361578@qq.com");
+//		user.setEnable(1);
+//		user.setDeleted(0);
+//		user.setMobile("13560427788");
+//		userService.createUser(user);
+//	}
 }
