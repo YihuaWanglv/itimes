@@ -15,10 +15,10 @@ import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import com.iyihua.itimes.component.message.IRedisPublisher;
+import com.iyihua.itimes.component.message.RedisPublisher;
 import com.iyihua.itimes.component.message.Receiver;
 import com.iyihua.itimes.component.message.RedisMessageListener;
-import com.iyihua.itimes.component.message.RedisPublisherImpl;
+import com.iyihua.itimes.component.message.DefaultRedisPublisher;
 
 @Configuration
 public class RedisMessageConfig {
@@ -30,9 +30,9 @@ public class RedisMessageConfig {
 		RedisMessageListenerContainer container = new RedisMessageListenerContainer();
 		container.setConnectionFactory(connectionFactory);
 //		container.addMessageListener(listenerAdapter, new PatternTopic("chat"));
-//		
 //		container.addMessageListener(listenerAdapter, new PatternTopic("email"));
-		container.addMessageListener(listenerAdapter, new PatternTopic("pubsub:queue"));
+//		container.addMessageListener(listenerAdapter, new PatternTopic("pubsub:queue"));
+		container.addMessageListener(listenerAdapter, topic());
 
 		return container;
 	}
@@ -74,8 +74,8 @@ public class RedisMessageConfig {
     }
 	
 	@Bean
-    IRedisPublisher redisPublisher(RedisConnectionFactory connectionFactory) {
-        return new RedisPublisherImpl( redisTemplate(connectionFactory), topic() );
+    RedisPublisher redisPublisher(RedisConnectionFactory connectionFactory) {
+        return new DefaultRedisPublisher(redisTemplate(connectionFactory));
     }
 
     @Bean

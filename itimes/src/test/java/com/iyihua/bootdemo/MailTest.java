@@ -14,7 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.iyihua.itimes.App;
-import com.iyihua.itimes.component.message.IRedisPublisher;
+import com.iyihua.itimes.component.message.RedisPublisher;
 
 /**
  * Unit test for simple App.
@@ -41,9 +41,9 @@ public class MailTest {
 //	@Autowired
 //	CountDownLatch latch;
 	
-	@Autowired IRedisPublisher redisPublisher;
+	@Autowired RedisPublisher redisPublisher;
 	
-	@Test
+//	@Test
 	public void MessageTest() {
 //		System.err.println("Sending message...");
 //		stringRedisTemplate.convertAndSend("chat", "Hello from Redis!");
@@ -51,7 +51,7 @@ public class MailTest {
 //		
 //		stringRedisTemplate.convertAndSend("email", "Send email to wanglvyh!");
 		
-		redisPublisher.publish();
+//		redisPublisher.publish();
 		
 	}
 
