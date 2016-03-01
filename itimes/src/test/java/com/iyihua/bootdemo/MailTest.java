@@ -27,7 +27,7 @@ public class MailTest {
 		SimpleMailMessage msg = new SimpleMailMessage();
 	    msg.setFrom("619361578@qq.com");
 	    msg.setTo("wanglvyh@cf-ec.com");
-	    msg.setSubject("fdsfdsf");
+	    msg.setSubject("testemail");
 	    msg.setText("test");
 		javaMailSender.send(msg);
     }
