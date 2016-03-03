@@ -10,17 +10,17 @@ import org.springframework.util.Assert;
 
 import util.PasswordSecureHash;
 
+import com.iyihua.itimes.mapper.user.UserXmlMapper;
 import com.iyihua.itimes.model.User;
 import com.iyihua.itimes.repository.UserRepository;
 import com.iyihua.model.base.UserDTO;
-import com.iyihua.model.component.SaveOperation;
 import com.iyihua.remote.base.UserRemote;
 
 @Service
 public class UserService implements UserRemote {
 
-	@Autowired
-	UserRepository userRepository;
+	@Autowired private UserRepository userRepository;
+	@Autowired private UserXmlMapper userXmlMapper;
 	
 	@Override
 	public UserDTO findUserById(Long id) {
@@ -68,12 +68,14 @@ public class UserService implements UserRemote {
 	public UserDTO updateUser(UserDTO user, Boolean isUpdateSelected) throws NoSuchAlgorithmException, InvalidKeySpecException {
 		Assert.notNull(user, "User can not be null!");
 		User save = new User();
+		BeanUtils.copyProperties(user, save);
 		if (isUpdateSelected != null && isUpdateSelected) {
-			// update user selected
+			int r = userXmlMapper.updateUserSelective(save);
+			if (r <= 0) {
+				return null;
+			}
 		} else {
-			BeanUtils.copyProperties(user, save);
 			save = userRepository.save(save);
-			BeanUtils.copyProperties(save, user);
 		}
 		return user;
 	}

@@ -69,10 +69,14 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", saved.getId());
 		map.put("username", saved.getName());
-		map.put("url", "url");
-		EmailMessage email = new EmailMessage(saved.getEmail(), "Activate the account", map);
+		map.put("url", initUrl(saved));
+		EmailMessage email = new EmailMessage(saved.getEmail(), "Activate the account", null,  map);
 		RedisMessage message = new RedisMessage(0, "", email);
-		redisPublisher.publish(new ChannelTopic( "pubsub:queue" ), message);
+		redisPublisher.publish(new ChannelTopic("pubsub:queue"), message);
+	}
+
+	private String initUrl(UserDTO saved) {
+		return null;
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT)

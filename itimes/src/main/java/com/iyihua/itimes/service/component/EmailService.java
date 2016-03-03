@@ -1,39 +1,35 @@
 package com.iyihua.itimes.service.component;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
-import freemarker.core.ParseException;
-import freemarker.template.Configuration;
-import freemarker.template.MalformedTemplateNameException;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.TemplateNotFoundException;
+import com.iyihua.model.component.message.EmailMessage;
 
 @Component
 public class EmailService {
 
-	@Autowired
-    Configuration configuration;
+	@Autowired private JavaMailSender javaMailSender;
 	
-	public String initHtml() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
+	public void send(EmailMessage message) throws MessagingException {
+//		SimpleMailMessage msg = new SimpleMailMessage();
+//	    msg.setFrom("619361578@qq.com");
+//	    msg.setTo(message.getTo());
+//	    msg.setSubject(message.getSubject());
+//	    msg.setText(message.getContent());
+//		javaMailSender.send(msg);
 		
-		// prepare data
-        Map<String, String> data = new HashMap<>();
-        data.put("name", "Max Mustermann");
-        
-		// get template
-        Template t = configuration.getTemplate("test.html");
-        
-        String readyParsedTemplate = FreeMarkerTemplateUtils
-                .processTemplateIntoString(t, data);
-        
-        return readyParsedTemplate;
-        
+		MimeMessage mm = javaMailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(mm);
+		helper.setTo(message.getTo());
+		helper.setFrom("619361578@qq.com");
+		helper.setSubject(message.getSubject());
+		helper.setText(message.getContent(), true);
+		javaMailSender.send(mm);
 	}
 }

@@ -8,7 +8,9 @@ import java.io.ObjectOutputStream;
 
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MessageSerializer implements RedisSerializer<Object> {
 
 	@Override
