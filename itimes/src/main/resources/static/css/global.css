@@ -42,6 +42,10 @@ div.ui-select-container .btn-default {
 	height:100%;
 }
 
+.content-center {
+	text-align: center;
+}
+
 /*
  * 侧边导航
  */

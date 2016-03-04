@@ -5,6 +5,7 @@ import java.security.spec.InvalidKeySpecException;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.script.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -42,6 +43,7 @@ public class UserService implements UserRemote {
 		String salt = PasswordSecureHash.createRandom();
 		save.setPassword(PasswordSecureHash.hashEncrypt(user.getPassword(), salt));
 		save.setSalt(salt);
+		save.setCode(DigestUtils.sha1DigestAsHex(user.getCode()+salt));
 		save = userRepository.save(save);
 		BeanUtils.copyProperties(save, user);
 		return user;

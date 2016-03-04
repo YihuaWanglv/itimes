@@ -36,6 +36,8 @@ public class User implements Serializable {
 	private Integer deleted;
 	@Column()
 	private Integer enable;
+	@Column()
+	private String code;
 	public User() {
 		super();
 	}
@@ -45,7 +47,7 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public User(Long id, String name, String password, Integer type, String salt, String email, String mobile, Integer deleted, Integer enable) {
+	public User(Long id, String name, String password, Integer type, String salt, String email, String mobile, Integer deleted, Integer enable, String code) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -56,6 +58,7 @@ public class User implements Serializable {
 		this.mobile = mobile;
 		this.deleted = deleted;
 		this.enable = enable;
+		this.code = code;
 	}
 
 	public String getName() {
@@ -129,10 +132,19 @@ public class User implements Serializable {
 	public void setEnable(Integer enable) {
 		this.enable = enable;
 	}
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password + ", type=" + type + "]";
+		return "User [id=" + id + ", name=" + name + ", password=" + password + ", type=" + type + ", salt=" + salt + ", email=" + email + ", mobile=" + mobile + ", deleted=" + deleted + ", enable="
+				+ enable + ", code=" + code + "]";
 	}
 
 }

@@ -23,11 +23,11 @@ public class FreeMarkerManager {
 	public String initHtml(Map<String, Object> data) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
 
 		// prepare data
-		data.put("name", "Iyihua");
-		data.put("message", "Hello world!");
+//		data.put("name", "Iyihua");
+//		data.put("message", "Hello world!");
 
 		// get template
-		Template t = configuration.getTemplate("welcom.ftl");
+		Template t = configuration.getTemplate("email/user-active.html");
 
 		String readyParsedTemplate = FreeMarkerTemplateUtils.processTemplateIntoString(t, data);
 

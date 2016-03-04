@@ -5,9 +5,11 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +35,10 @@ public class UserController {
 	@Autowired private UserRemote userService;
 	@Autowired private LoginSessionManager loginSessionManager;
 	@Autowired private RedisPublisher redisPublisher;
+	
+	
+	@Value("${project.host}")
+	private String host = "localhost";
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<UserViewDTO> listUsers() {
@@ -50,10 +56,12 @@ public class UserController {
 		save.setEnable(0);
 		save.setDeleted(0);
 		save.setType(0);
+		String code = UUID.randomUUID().toString();
+		save.setCode(code);
 		try {
 			UserDTO saved = userService.createUser(save);
 			if (saved.getId() != null) {
-				sendAccountValidationEmail(saved);				
+				sendAccountValidationEmail(saved, code);				
 			} else {
 				json.setStatus(0);
 			}
@@ -65,18 +73,23 @@ public class UserController {
 		return json;
 	}
 	
-	private void sendAccountValidationEmail(UserDTO saved) {
+	private void sendAccountValidationEmail(UserDTO saved, String code) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", saved.getId());
 		map.put("username", saved.getName());
-		map.put("url", initUrl(saved));
-		EmailMessage email = new EmailMessage(saved.getEmail(), "Activate the account", null,  map);
+		map.put("url", initUrl(saved, code));
+		EmailMessage email = new EmailMessage(saved.getEmail(), "Confirm your email to complete the registration of TimeItem", null,  map);
 		RedisMessage message = new RedisMessage(0, "", email);
 		redisPublisher.publish(new ChannelTopic("pubsub:queue"), message);
 	}
 
-	private String initUrl(UserDTO saved) {
-		return null;
+	private String initUrl(UserDTO saved, String code) {
+		return "http://"+host+":8080/account/active?code="+code+"&id="+saved.getId();
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public void test() {
+		System.err.println(host);
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
