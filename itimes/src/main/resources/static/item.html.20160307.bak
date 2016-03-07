@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="./bower_components/angular-ui-select/dist/select.min.css" />
     <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/item.css" />
-    <link rel="stylesheet" href="./css/over-layer.css" />
     <!--[if lt IE 9]>
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
@@ -119,64 +118,6 @@
         </div>
         
       </form>
-
-
-      <!--layer-->
-      <div class="over-wrapper">
-        <a href="/p/hswM8nHqcJ9hYcgeX/b/89AgixK962tqLkCHH" class="over-close">¡Á</a>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-              <div class="over-top">
-                <div class="card-actions">
-                  <!-- Change header image -->
-                  <label for="card-header-input" class="action" rel="tooltip" title="" data-placement="bottom" data-original-title="Add Header Image"> <i class="fa fa-image"></i>
-                    <input type="file" id="card-header-input" class="hide" accept="image/*"></label>
-
-
-                  <a href="#" id="toggle-assignee" data-toggle="dropdown" class="pull-right">
-                    <img src="https://s3.amazonaws.com/wiplo/brand/default/i.png" rel="tooltip" data-placement="left" title="" width="40" height="40" data-original-title="iyihua"></a>
-                  <div class="dropdown-menu dropdown-menu-right assignee-list">
-                    <a href="#" class="change-owner" data-id="kiCDLjC4cTeKhujoY">
-                      <img src="https://s3.amazonaws.com/wiplo/brand/default/i.png" class="mention_image" width="18" height="18">
-                      <span class="mention_name">iyihua</span>
-                      <span class="mention_username">@iyihua</span>
-                    </a>
-                  </div>
-                </div>
-                <h1 id="card-title-output">kk</h1>
-                <form id="card-title-form">
-                  <input type="text" maxlength="200" id="card-title-input" class="hide"></form>
-              </div>
-              <div class="over-bottom">
-
-                <form id="card-blocker-form" class="hide">
-                  <input type="text" placeholder="What's blocking this card?"></form>
-                <p id="card-description-output">
-
-                  <span class="text-muted">Add a description to this card...</span>
-
-                </p>
-                <form id="card-description-form" class="hide">
-                  <textarea placeholder="Add a description to this card..." class="form-control"></textarea>
-                  <input type="submit" value="Save" class="hide"></form>
-
-                <hr>
-
-                <form id="add-comment-form">
-                  <input type="text" id="add-comment-input" class="form-control" placeholder="Add a comment or @mention a team member"></form>
-              </div>
-              <div class="over-footer">
-                <p>Card created 8 days ago by iyihua</p>
-                <p>
-                  <a href="#" class="delete-card" id="delete-card">Delete Card</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--layer end-->
     </div>
     <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
