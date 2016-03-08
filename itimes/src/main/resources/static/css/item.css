@@ -45,3 +45,7 @@ body .content-list .content-list-main {
 .text-center {
     text-align: center;
 }
+
+.input-group .form-control {
+    z-index: 0;
+}

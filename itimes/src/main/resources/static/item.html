@@ -123,48 +123,72 @@
 
       <!--layer-->
       <div class="over-wrapper">
-        <a href="/p/hswM8nHqcJ9hYcgeX/b/89AgixK962tqLkCHH" class="over-close">¡Á</a>
+        <a href="/p/hswM8nHqcJ9hYcgeX/b/89AgixK962tqLkCHH" class="over-close">×</a>
         <div class="container">
           <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
+            <div class="col-sm-12">
               <div class="over-top">
-                <div class="card-actions">
-                  <!-- Change header image -->
-                  <label for="card-header-input" class="action" rel="tooltip" title="" data-placement="bottom" data-original-title="Add Header Image"> <i class="fa fa-image"></i>
-                    <input type="file" id="card-header-input" class="hide" accept="image/*"></label>
-
-
-                  <a href="#" id="toggle-assignee" data-toggle="dropdown" class="pull-right">
-                    <img src="https://s3.amazonaws.com/wiplo/brand/default/i.png" rel="tooltip" data-placement="left" title="" width="40" height="40" data-original-title="iyihua"></a>
-                  <div class="dropdown-menu dropdown-menu-right assignee-list">
-                    <a href="#" class="change-owner" data-id="kiCDLjC4cTeKhujoY">
-                      <img src="https://s3.amazonaws.com/wiplo/brand/default/i.png" class="mention_image" width="18" height="18">
-                      <span class="mention_name">iyihua</span>
-                      <span class="mention_username">@iyihua</span>
-                    </a>
-                  </div>
-                </div>
                 <h1 id="card-title-output">kk</h1>
-                <form id="card-title-form">
-                  <input type="text" maxlength="200" id="card-title-input" class="hide"></form>
               </div>
               <div class="over-bottom">
-
-                <form id="card-blocker-form" class="hide">
-                  <input type="text" placeholder="What's blocking this card?"></form>
-                <p id="card-description-output">
-
-                  <span class="text-muted">Add a description to this card...</span>
-
-                </p>
-                <form id="card-description-form" class="hide">
-                  <textarea placeholder="Add a description to this card..." class="form-control"></textarea>
-                  <input type="submit" value="Save" class="hide"></form>
+                
+                <form id="card-description-form form-horizontal">
+                  <div class="form-group">
+                    <div class="col-sm-3">
+                      <ui-select ng-model="newItem.category" theme="bootstrap">
+                        <ui-select-match placeholder="Select a category...">{{$select.selected.categoryName}}</ui-select-match>
+                        <ui-select-choices repeat="category in categorys">
+                          <div ng-bind-html="category.categoryName"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                    <div class="col-sm-3">
+                      <ui-select ng-model="newItem.project" theme="bootstrap">
+                        <ui-select-match placeholder="Select a project...">{{$select.selected.projectName}}</ui-select-match>
+                        <ui-select-choices repeat="project in projects">
+                          <div ng-bind-html="project.projectName"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                    <div class="col-sm-3">
+                      <ui-select ng-model="newItem.location" theme="bootstrap">
+                        <ui-select-match placeholder="Select a location...">{{$select.selected.location}}</ui-select-match>
+                        <ui-select-choices repeat="location in locations">
+                          <div ng-bind-html="location.location"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                    <div class="col-sm-3">
+                      <ui-select ng-model="newItem.tag" theme="bootstrap">
+                        <ui-select-match placeholder="Select a tag...">{{$select.selected.tagName}}</ui-select-match>
+                        <ui-select-choices repeat="tag in tags">
+                          <div ng-bind-html="tag.tagName"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-group">
+                    <div class="col-sm-3">
+                      <input class="form-control" type="date" name="date" ng-model="newDate" placeholder="yyyy-MM-dd" min="1949-01-01" required />
+                    </div>
+                    <div class="col-sm-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="newItem.item"/>
+                        <span class="input-group-btn">
+                          <button class="btn btn-success" type="submit" title="Add" ng-disabled="!newItem.item">
+                            <span class="glyphicon glyphicon-plus"></span>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </form>
 
                 <hr>
 
-                <form id="add-comment-form">
-                  <input type="text" id="add-comment-input" class="form-control" placeholder="Add a comment or @mention a team member"></form>
+                
               </div>
               <div class="over-footer">
                 <p>Card created 8 days ago by iyihua</p>
