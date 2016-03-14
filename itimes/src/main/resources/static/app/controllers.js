@@ -76,16 +76,14 @@
         tags: _item.tags||'',
         categoryName: _item.category.categoryName||'',
         projectName: _item.project.projectName||'',
-        location: _item.location.location||'',
+        locationName: _item.location.location||'',
         duration: 2
       }).$save(function(item){
         $scope.items.push(item);
       });
       $scope.newItem = initNewItem();
     }
-    $scope.updateItem = function(item) {
-      item.$update();
-    }
+    
     $scope.editItem = function(item) {
       item.editting = !item.editting;
       $scope.showEditLayer = 1;
@@ -97,7 +95,8 @@
       // $scope.edittingItem.tag = findSelected('tag', item.tagId);
       // $scope.edittingItem.category = item.categoryName;
       //item.$update();
-      $scope.edittingItem.dateTime = new Date(item.date);
+      // $scope.edittingItem.dateTime = new Date(item.date);
+      $scope.edittingItem.date = new Date(item.date);
     }
     function findSelected(_type, _id) {
       if (_type && _type == 'category') {
@@ -121,6 +120,25 @@
         }
       }
       return null;
+    }
+    $scope.updateItem = function(item) {
+      item.categoryId = item.category.categoryId||null;
+      item.projectId = item.project.projectId||null;
+      item.locationId = item.location.locationId||null;
+      item.categoryName = item.category.categoryName||'';
+      item.projectName = item.project.projectName||'';
+      item.locationName = item.location.location||'';
+
+      $http.put('/items/' + item.itemId, item)
+      .success(function (data, status, headers, config) {
+        console.log('ok!');
+        item.editting = !item.editting;
+        $scope.edittingItem = null;
+        $scope.showEditLayer = 0;
+      })
+      .error(function (data, status, header, config) {
+        console.log('not ok!');
+      });
     }
     $scope.deleteItem = function(item) {
       $http.delete('/items/' + item.itemId, {}).success(function (data, status) {
