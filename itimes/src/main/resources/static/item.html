@@ -56,12 +56,13 @@
             </ui-select>
           </div>
           <div class="col-sm-3">
-            <ui-select ng-model="newItem.tag" theme="bootstrap">
+            <input type="text" class="form-control"  placeholder='Enter some tag split with ","'  ng-model="newItem.tags"/>
+            <!-- <ui-select ng-model="newItem.tag" theme="bootstrap">
               <ui-select-match placeholder="Select a tag...">{{$select.selected.tagName}}</ui-select-match>
               <ui-select-choices repeat="tag in tags">
                 <div ng-bind-html="tag.tagName"></div>
               </ui-select-choices>
-            </ui-select>
+            </ui-select> -->
           </div>
         </div>
 
@@ -98,7 +99,7 @@
               <button class="btn btn-default btn-danger" type="button" title="Delete" ng-if="!item.editting" ng-click="deleteItem(item)">
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
-              <button class="btn btn-default btn-primary" type="button" title="Edit" ng-if="!item.editting" ng-click="changeButtonFlag(item);">
+              <button class="btn btn-default btn-primary" type="button" title="Edit" ng-if="!item.editting" ng-click="editItem(item);">
                 <span class="glyphicon glyphicon-edit"></span>
               </button>
               <button class="btn btn-default btn-success" type="button" title="Update" ng-if="item.editting" ng-click="changeButtonFlag(item);updateItem(item)">
@@ -122,18 +123,22 @@
 
 
       <!--layer-->
-      <div class="over-wrapper">
-        <a href="/p/hswM8nHqcJ9hYcgeX/b/89AgixK962tqLkCHH" class="over-close">×</a>
+      <div id="edit-layer" class="over-wrapper" ng-hide="showEditLayer==0">
+        <a ng-click="closeLayer(edittingItem)" href="javascript:void(0);" class="over-close">×</a>
+        <!-- 
+        <button type="button" class="btn btn-default btn-lg over-close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button> -->
         <div class="container">
           <div class="row">
               <div class="over-top">
                 <h1 id="card-title-output">Editting time item</h1>
               </div>
               <div class="over-bottom">
-                <form class="form-horizontal" role="form" ng-submit="createItem(newItem)">
+                <form class="form-horizontal" role="form" ng-submit="updateItem(edittingItem)">
                   <div class="form-group">
                     <div class="col-sm-3">
-                      <ui-select ng-model="newItem.category" theme="bootstrap">
+                      <ui-select ng-model="edittingItem.category" theme="bootstrap">
                         <ui-select-match placeholder="Select a category...">{{$select.selected.categoryName}}</ui-select-match>
                         <ui-select-choices repeat="category in categorys">
                           <div ng-bind-html="category.categoryName"></div>
@@ -141,7 +146,7 @@
                       </ui-select>
                     </div>
                     <div class="col-sm-3">
-                      <ui-select ng-model="newItem.project" theme="bootstrap">
+                      <ui-select ng-model="edittingItem.project" theme="bootstrap">
                         <ui-select-match placeholder="Select a project...">{{$select.selected.projectName}}</ui-select-match>
                         <ui-select-choices repeat="project in projects">
                           <div ng-bind-html="project.projectName"></div>
@@ -149,7 +154,7 @@
                       </ui-select>
                     </div>
                     <div class="col-sm-3">
-                      <ui-select ng-model="newItem.location" theme="bootstrap">
+                      <ui-select ng-model="edittingItem.location" theme="bootstrap">
                         <ui-select-match placeholder="Select a location...">{{$select.selected.location}}</ui-select-match>
                         <ui-select-choices repeat="location in locations">
                           <div ng-bind-html="location.location"></div>
@@ -157,21 +162,16 @@
                       </ui-select>
                     </div>
                     <div class="col-sm-3">
-                      <ui-select ng-model="newItem.tag" theme="bootstrap">
-                        <ui-select-match placeholder="Select a tag...">{{$select.selected.tagName}}</ui-select-match>
-                        <ui-select-choices repeat="tag in tags">
-                          <div ng-bind-html="tag.tagName"></div>
-                        </ui-select-choices>
-                      </ui-select>
+                      <input type="text" class="form-control"  placeholder='Enter some tag split with ","'  ng-model="edittingItem.tags"/>
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="col-sm-3">
-                      <input class="form-control" type="date" name="date" ng-model="newDate" placeholder="yyyy-MM-dd" min="1949-01-01" required />
+                      <input class="form-control" type="date" name="date"  placeholder="yyyy-MM-dd" min="1949-01-01" ng-model="edittingItem.dateTime" required />
                     </div>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="newItem.item"/>
+                      <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="edittingItem.item"/>
                     </div>
                   </div>
                   <div class="form-group">
@@ -181,7 +181,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-md-12 text-center"> 
-                      <button id="save" class="btn btn-primary">Save!</button> 
+                      <button id="save" type="submit" class="btn btn-success">Save</button> 
                     </div>
                   </div>
                 </form>
@@ -212,5 +212,13 @@
     <script type="text/javascript" src="./app/app.js"></script>
     <script type="text/javascript" src="./app/controllers.js"></script>
     <script type="text/javascript" src="./app/services.js"></script>
+    <script> 
+      // $(function(){
+      //   $("#test").on('click', function(event) {
+      //     $("#edit-layer").removeClass('hidden');
+      //     //$("#myId").addClass('hidden');
+      //   });
+      // });
+    </script>
   </body>
 </html>

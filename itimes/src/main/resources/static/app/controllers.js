@@ -7,6 +7,11 @@
     $scope.newDate = new Date();
     $scope.newItem = initNewItem();
     $scope.showing;
+    $scope.showEditLayer = 0;
+    $scope.edittingItem;
+    $scope.ing = {
+      selected: {}
+    };
     $http.get('/items/list',{params: {page:$scope.page}})
     .success(function(data, status, headers, config){
       $scope.items = (data&&data.items)?data.items:[];
@@ -62,13 +67,13 @@
     
     $scope.createItem = function(_item) {
       new Item({
-        // itemDate: $filter('date')($scope.newDate, 'yyyy-MM-dd'),
         date: $scope.newDate,
         item: _item.item,
         categoryId: _item.category.categoryId||null,
         projectId: _item.project.projectId||null,
         locationId: _item.location.locationId||null,
-        tags: _item.tag.tagName||'',
+        // tags: _item.tag.tagName||'',
+        tags: _item.tags||'',
         categoryName: _item.category.categoryName||'',
         projectName: _item.project.projectName||'',
         location: _item.location.location||'',
@@ -76,38 +81,60 @@
       }).$save(function(item){
         $scope.items.push(item);
       });
-      // console.log(_item);
       $scope.newItem = initNewItem();
     }
     $scope.updateItem = function(item) {
       item.$update();
     }
+    $scope.editItem = function(item) {
+      item.editting = !item.editting;
+      $scope.showEditLayer = 1;
+      $scope.edittingItem = item;
+      // console.log(item);
+      $scope.edittingItem.category = findSelected('category', item.categoryId);
+      $scope.edittingItem.project = findSelected('project', item.projectId);
+      $scope.edittingItem.location = findSelected('location', item.locationId);
+      // $scope.edittingItem.tag = findSelected('tag', item.tagId);
+      // $scope.edittingItem.category = item.categoryName;
+      //item.$update();
+      $scope.edittingItem.dateTime = new Date(item.date);
+    }
+    function findSelected(_type, _id) {
+      if (_type && _type == 'category') {
+        for (var i = 0; i < $scope.categorys.length; i++) {
+          if ($scope.categorys[i].categoryId == _id) return $scope.categorys[i];
+        }
+      }
+      if (_type && _type == 'project') {
+        for (var i = 0; i < $scope.projects.length; i++) {
+          if ($scope.projects[i].projectId == _id) return $scope.projects[i];
+        }
+      }
+      if (_type && _type == 'location') {
+        for (var i = 0; i < $scope.locations.length; i++) {
+          if ($scope.locations[i].locationId == _id) return $scope.locations[i];
+        }
+      }
+      if (_type && _type == 'tag') {
+        for (var i = 0; i < $scope.tags.length; i++) {
+          if ($scope.tags[i].tagId == _id) return $scope.tags[i];
+        }
+      }
+      return null;
+    }
     $scope.deleteItem = function(item) {
-      // item.$remove(function(){
-      //   $scope.items.splice($scope.items.indexOf(item),1);
-      // });
-      // console.log('---');
-      // console.log(item.itemId);
-      // $http({
-      //   method: 'DELETE',
-      //   url: '/items'
-      // }).then(function successCallback(response) {
-      //   // this callback will be called asynchronously
-      //   // when the response is available
-      //   $scope.items.splice($scope.items.indexOf(item),1);
-      // }, function errorCallback(response) {
-      //   // called asynchronously if an error occurs
-      //   // or server returns response with an error status.
-      //   alert('delete failed!');
-      // });
       $http.delete('/items/' + item.itemId, {}).success(function (data, status) {
-        // console.log(data);
-        console.log('success');
         $scope.items.splice($scope.items.indexOf(item),1);
       });
     }
     $scope.changeButtonFlag = function(item) {
       item.editting = !item.editting;
+    }
+    $scope.closeLayer = function(edit) {
+      //item.$update();
+      edit.editting = !edit.editting;
+      $scope.edittingItem = null;
+      $scope.showEditLayer = 0;
     }
 
     // resource
