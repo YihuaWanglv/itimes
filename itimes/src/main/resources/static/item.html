@@ -126,13 +126,11 @@
         <a href="/p/hswM8nHqcJ9hYcgeX/b/89AgixK962tqLkCHH" class="over-close">×</a>
         <div class="container">
           <div class="row">
-            <div class="col-sm-12">
               <div class="over-top">
-                <h1 id="card-title-output">kk</h1>
+                <h1 id="card-title-output">Editting time item</h1>
               </div>
               <div class="over-bottom">
-                
-                <form id="card-description-form form-horizontal">
+                <form class="form-horizontal" role="form" ng-submit="createItem(newItem)">
                   <div class="form-group">
                     <div class="col-sm-3">
                       <ui-select ng-model="newItem.category" theme="bootstrap">
@@ -167,36 +165,35 @@
                       </ui-select>
                     </div>
                   </div>
-                  <hr>
+
                   <div class="form-group">
                     <div class="col-sm-3">
                       <input class="form-control" type="date" name="date" ng-model="newDate" placeholder="yyyy-MM-dd" min="1949-01-01" required />
                     </div>
                     <div class="col-sm-9">
-                      <div class="input-group">
-                        <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="newItem.item"/>
-                        <span class="input-group-btn">
-                          <button class="btn btn-success" type="submit" title="Add" ng-disabled="!newItem.item">
-                            <span class="glyphicon glyphicon-plus"></span>
-                          </button>
-                        </span>
-                      </div>
+                      <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="newItem.item"/>
                     </div>
                   </div>
-                  
+                  <div class="form-group">
+                    <div class="col-sm-12">
+                      <textarea placeholder="You can enter your results or outcomes here..." class="form-control" style="overflow: hidden; height: 220px;"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-12 text-center"> 
+                      <button id="save" class="btn btn-primary">Save!</button> 
+                    </div>
+                  </div>
                 </form>
-
-                <hr>
-
                 
               </div>
+ 
               <div class="over-footer">
                 <p>Card created 8 days ago by iyihua</p>
                 <p>
-                  <a href="#" class="delete-card" id="delete-card">Delete Card</a>
+                  <a href="#" class="delete-card" id="delete-card">Delete this item</a>
                 </p>
               </div>
-            </div>
           </div>
         </div>
       </div>

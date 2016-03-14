@@ -103,3 +103,18 @@ div.ui-select-container .btn-default {
 }
 
 
+/**/
+.navbar-inverse {
+    background-color: #fff8e7;
+    border-color: #fff8e7;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #fff8e7;
+}
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    color: #000;
+    /*background-color: transparent;*/
+}
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #000;
+}
