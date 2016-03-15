@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import util.EmailUtil;
+
 import com.iyihua.itimes.component.message.RedisMessage;
 import com.iyihua.itimes.component.message.RedisPublisher;
 import com.iyihua.itimes.component.security.LoginSessionManager;
 import com.iyihua.itimes.web.dto.UserAccountSaveDTO;
+import com.iyihua.itimes.web.dto.UserSaveResultDTO;
 import com.iyihua.itimes.web.dto.UserViewDTO;
 import com.iyihua.model.base.UserDTO;
 import com.iyihua.model.component.JsonObject;
@@ -61,7 +64,8 @@ public class UserController {
 		try {
 			UserDTO saved = userService.createUser(save);
 			if (saved.getId() != null) {
-				sendAccountValidationEmail(saved, code);				
+				sendAccountValidationEmail(saved, code);
+				json.setData(new UserSaveResultDTO(saved.getId(), saved.getName(), saved.getEmail(), EmailUtil.getEmailIndexFromUserEmail(saved.getEmail())));
 			} else {
 				json.setStatus(0);
 			}

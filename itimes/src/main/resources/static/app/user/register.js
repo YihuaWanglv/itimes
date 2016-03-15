@@ -14,7 +14,10 @@ $().ready(function() {
 	            success: function (data) {
 	                if (data.status) {
 	                	layer.msg('success!');
-	                	window.location.href='/item.html';	                	
+                        localStorage.email = params.email;
+                        localStorage.username = params.name;
+                        localStorage.index = data.data.index;
+	                	window.location.href='/view/sign-up-finished.html';	                	
 	                } else {
 	                	layer.msg('Failed to create your account!' + data.message);
 	                }
