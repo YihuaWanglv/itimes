@@ -7,7 +7,14 @@ $(function() {
         $('.nav-right').addClass('my-navbar-right-show');
       }
     });
+    if (TI_cookie.getCookie('username')) {
+      $('.field-username').text(TI_cookie.getCookie('username'));
+      $('.login-on').show();
+      $('.login-off').hide();
+    } else {
+      $('.login-off').show();
+      $('.login-on').hide();
+    }
   });
   $(".nav-right-holder").load("./view/nav-right.html");
-  
 });

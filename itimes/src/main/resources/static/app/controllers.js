@@ -77,9 +77,10 @@
         categoryName: _item.category.categoryName||'',
         projectName: _item.project.projectName||'',
         locationName: _item.location.location||'',
-        duration: 2
+        duration: _item.duration
       }).$save(function(item){
-        $scope.items.push(item);
+        // $scope.items.push(item);//unshift
+        $scope.items.unshift(item);
       });
       $scope.newItem = initNewItem();
     }

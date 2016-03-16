@@ -9,13 +9,16 @@ shiro:
     "/sign-up": anon
     "/user/**": anon
     "/view/**": anon
+    "/css/**": anon
     "/static/**": anon
     "/bower_components/**": anon
     "/app/**": anon
     "/lib/**": anon
     "/auth": anon
     "/account/**": anon
-    "/logout": logout
+    "/index.html": anon
+    "/about.html": anon
+    "/logout": anon
     "/**": authc
   enableShareJsession: true
   shareJsessionKey: SHAREJSESSIONID

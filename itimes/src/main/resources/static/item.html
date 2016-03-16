@@ -71,10 +71,14 @@
         </div>
 
         <div class="form-group">
+          
           <div class="col-sm-3">
             <input class="form-control" type="date" name="date" ng-model="newDate" placeholder="yyyy-MM-dd" min="1949-01-01" required />
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-3">
+            <input type="number" class="form-control"  placeholder='How much time of this Item?' ng-model="newItem.duration"/>
+          </div>
+          <div class="col-sm-6">
             <div class="input-group">
               <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="newItem.item"/>
               <span class="input-group-btn">
@@ -97,6 +101,7 @@
               <span ng-if="!item.editting">{{item.projectName}} </span>
               <span ng-if="!item.editting">{{item.locationName}} </span>
               <span ng-if="!item.editting">{{item.item}}</span>
+              <span ng-if="!item.editting">{{item.duration}}</span>
               <input type="text" class="form-control" ng-model="item.item" ng-if="item.editting">
             </div>
             <div class="input-group-btn">
@@ -174,7 +179,10 @@
                     <div class="col-sm-3">
                       <input class="form-control" type="date" name="date"  placeholder="yyyy-MM-dd" min="1949-01-01" ng-model="edittingItem.date" required />
                     </div>
-                    <div class="col-sm-9">
+                    <div class="col-sm-3">
+                      <input type="number" class="form-control"  placeholder='How much time of this Item?' ng-model="edittingItem.duration"/>
+                    </div>
+                    <div class="col-sm-6">
                       <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="edittingItem.item"/>
                     </div>
                   </div>

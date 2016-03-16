@@ -3,6 +3,7 @@ package com.iyihua.itimes.web.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,7 +40,10 @@ public class LoginController {
 			req.setAttribute("error", error);
 			resp.sendRedirect("/forbidden.html");
 		} else {// 登录成功
-			resp.sendRedirect("/index.html");// 设置跳转的页面
+			Cookie cookie = new Cookie("username", username);
+			cookie.setPath("/");
+			resp.addCookie(cookie);
+			resp.sendRedirect("/item.html");// 设置跳转的页面
 		}
 	}
 
@@ -49,6 +53,29 @@ public class LoginController {
 
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
+		
+//		Cookie cookie = new Cookie("username", null);
+//		cookie.setMaxAge(0);
+//		cookie.setPath("/");
+//		resp.addCookie(cookie);
+		
+		delete(req, resp, "username");
+		
 		resp.sendRedirect("/index.html");
+	}
+	
+	public void delete(HttpServletRequest req, HttpServletResponse resp, String key) {
+	    Cookie[] cookies = req.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	        	System.out.println("------" + cookie.getName().toString());
+	            if (cookie.getName().toString().equals(key)) {
+	                cookie.setValue(null);
+	                cookie.setMaxAge(0);
+	                cookie.setPath("/");
+	                resp.addCookie(cookie);
+	            }
+	        }
+	    }
 	}
 }
