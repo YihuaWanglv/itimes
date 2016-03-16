@@ -154,6 +154,12 @@
       $scope.edittingItem = null;
       $scope.showEditLayer = 0;
     }
+    $scope.checkConfig = function() {
+      if (!$scope.categorys || $scope.categorys.length==0) return true;
+      if (!$scope.projects || $scope.projects.length==0) return true;
+      if (!$scope.locations || $scope.locations.length==0) return true;
+      return false;
+    }
 
     // resource
     Category.query(function(response) {

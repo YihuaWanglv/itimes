@@ -27,6 +27,10 @@
       <div class="alert alert-info" role="alert" ng-hide="items &amp;&amp; items.length > 0">
         There are no items yet.
       </div>
+      <div class="alert alert-info" role="alert" ng-show="checkConfig()">
+        You should config your category,project,location info first. You can config in config center or here below.
+        <a href="/category.html">category</a> <a href="/project.html">project</a> <a href="/location.html">location</a>
+      </div>
       
       <form class="form-horizontal" role="form" ng-submit="createItem(newItem)">
         
