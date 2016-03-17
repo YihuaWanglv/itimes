@@ -16,8 +16,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<start-class>com.iyihua.itimes.App</start-class>
 	</properties>
-
+	
 	<dependencies>
 		<!-- lib iyihua -->
 		<dependency>
@@ -90,4 +91,50 @@
 			<version>1.4</version>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-prod-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<!-- this is important -->
+							<overwrite>true</overwrite>
+							<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+							<outputDirectory>target/classes</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<includes>
+										<include>*.properties</include>
+										<include>*.xml</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>src/main/resources/${env}</directory>
+									<targetPath></targetPath>
+								</resource>
+							</resources>
+							<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+							<testOutputDirectory>target/test-classes</testOutputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

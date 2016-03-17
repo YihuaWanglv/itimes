@@ -29,12 +29,18 @@
 
 	<profiles>
 		<profile>
-			<id>me</id>
+			<id>local</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<env>me</env>
+				<env>local</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<env>dev</env>
 			</properties>
 		</profile>
 		<profile>
