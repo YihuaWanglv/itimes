@@ -96,12 +96,21 @@
           </div>
           <div class="input-group content-list" >
             <div class="content-list-main">
-              <span ng-if="!item.editting">{{item.date | date:'yyyy-MM-dd'}} </span>
-              <span ng-if="!item.editting">{{item.categoryName}} </span>
-              <span ng-if="!item.editting">{{item.projectName}} </span>
-              <span ng-if="!item.editting">{{item.locationName}} </span>
-              <span ng-if="!item.editting">{{item.item}}</span>
-              <span ng-if="!item.editting">{{item.duration}}</span>
+              <div class="col-sm-2">
+                <span ng-if="!item.editting">{{item.date | date:'yyyy-MM-dd'}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span ng-if="!item.editting">{{item.duration}}h</span>
+              </div>
+              <div class="col-sm-5">
+                <span ng-if="!item.editting">{{item.item}}</span>
+              </div>
+              <div class="col-sm-5">
+                <span ng-if="!item.editting" class="col-sm-4">@{{item.locationName}}</span>
+                <span ng-if="!item.editting" class="col-sm-4">@{{item.categoryName}}</span>
+                <span ng-if="!item.editting" class="col-sm-4">@{{item.projectName}}</span>
+              </div>
+              
+              
+              
               <input type="text" class="form-control" ng-model="item.item" ng-if="item.editting">
             </div>
             <div class="input-group-btn">
