@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 
 import util.DateUtil;
 
-import com.iyihua.itimes.mapper.ItemMapper;
+//import com.iyihua.itimes.mapper.ItemMapper;
 import com.iyihua.itimes.mapper.SuperItemMapper;
 import com.iyihua.itimes.model.Item;
 import com.iyihua.itimes.repository.ItemRepository;
@@ -23,8 +23,8 @@ import com.iyihua.remote.base.ItemRemote;
 @Service
 public class ItemService implements ItemRemote {
 
-	@Autowired
-	ItemMapper itemMapper;
+//	@Autowired
+//	ItemMapper itemMapper;
 	@Autowired
 	SuperItemMapper superItemMapper;
 	@Autowired
@@ -34,14 +34,14 @@ public class ItemService implements ItemRemote {
 	public List<ItemDTO> findItemsByUserId(Long userId) {
 		Assert.notNull(userId, "userId can not be null!");
 		List<ItemDTO> result = new ArrayList<ItemDTO>();
-		List<Item> items = itemMapper.findAll();
-		if (items != null && items.size() > 0) {
-			for (Item item : items) {
-				ItemDTO dto = new ItemDTO();
-				BeanUtils.copyProperties(item, dto);
-				result.add(dto);
-			}
-		}
+//		List<Item> items = itemMapper.findAll();
+//		if (items != null && items.size() > 0) {
+//			for (Item item : items) {
+//				ItemDTO dto = new ItemDTO();
+//				BeanUtils.copyProperties(item, dto);
+//				result.add(dto);
+//			}
+//		}
 		return result;
 	}
 

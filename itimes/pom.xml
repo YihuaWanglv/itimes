@@ -18,7 +18,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>com.iyihua.itimes.App</start-class>
 	</properties>
-	
+
 	<dependencies>
 		<!-- lib iyihua -->
 		<dependency>
@@ -33,13 +33,8 @@
 		</dependency>
 
 		<!-- lib -->
-		<!-- 
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>org.mybatis.spring.boot</groupId> <artifactId>mybatis-spring-boot-starter</artifactId> 
+			<version>1.0.1-SNAPSHOT</version> </dependency> -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -50,13 +45,8 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>com.github.boyazuo</groupId>
-			<artifactId>shiro-spring-boot-starter</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>com.github.boyazuo</groupId> <artifactId>shiro-spring-boot-starter</artifactId> 
+			<version>1.0.0</version> </dependency> -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -91,15 +81,28 @@
 			<version>1.4</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
+			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+				<configuration> <skipTests>true</skipTests> </configuration> </plugin> -->
+
+			<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <configuration> 
+				<archive> <manifest> <mainClass>com.iyihua.itimes.App</mainClass> </manifest> 
+				</archive> <descriptorRefs> <descriptorRef> jar-with-dependencies </descriptorRef> 
+				</descriptorRefs> </configuration> <executions> <execution> <id>make-assembly</id> 
+				<phase>package</phase> <goals> <goal>single</goal> </goals> </execution> 
+				</executions> </plugin> -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<skipTests>true</skipTests>
-				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -107,26 +110,11 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.iyihua.itimes.App</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
-			</plugin>
-			<plugin>  
-			    <artifactId>maven-assembly-plugin</artifactId>  
-			    <version>2.2</version>  
-			    <configuration>  
-			        <archive>  
-			            <manifest>  
-			                <mainClass>com.iyihua.itimes.App</mainClass>  
-			            </manifest>  
-			        </archive>  
-			        <descriptorRefs>  
-			            <descriptorRef>  
-			                jar-with-dependencies  
-			            </descriptorRef>  
-			        </descriptorRefs>  
-			    </configuration>  
 			</plugin>
 
 			<plugin>
@@ -161,6 +149,10 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
