@@ -19,6 +19,8 @@
 		<zookeeper.version>3.4.6</zookeeper.version>
 		<spring-boot.version>1.2.5.RELEASE</spring-boot.version>
 		<shiro.version>1.2.3</shiro.version>
+		<jedis.version>2.8.1</jedis.version>
+		<spring-data-redis.version>1.7.0.RELEASE</spring-data-redis.version>
 	</properties>
 
 	<!-- <dependencyManagement> <dependencies> <dependency> <groupId>io.spring.platform</groupId> 

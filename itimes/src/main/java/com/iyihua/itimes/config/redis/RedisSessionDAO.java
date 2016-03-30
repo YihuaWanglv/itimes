@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.iyihua.itimes.service.component.RedisService;
+
 @Component
 public class RedisSessionDAO extends AbstractSessionDAO {
 
@@ -20,8 +22,8 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 	/**
 	 * shiro-redis的session对象前缀
 	 */
-	@Autowired
-	private RedisManager redisManager;
+//	@Autowired private RedisManager redisManager;
+	@Autowired private RedisService redisManager;
 	
 	/**
 	 * The Redis key prefix for the sessions 
@@ -104,18 +106,18 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 		return preKey.getBytes();
 	}
 
-	public RedisManager getRedisManager() {
-		return redisManager;
-	}
-
-	public void setRedisManager(RedisManager redisManager) {
-		this.redisManager = redisManager;
-		
-		/**
-		 * 初始化redisManager
-		 */
-		this.redisManager.init();
-	}
+//	public RedisManager getRedisManager() {
+//		return redisManager;
+//	}
+//
+//	public void setRedisManager(RedisManager redisManager) {
+//		this.redisManager = redisManager;
+//		
+//		/**
+//		 * 初始化redisManager
+//		 */
+//		this.redisManager.init();
+//	}
 
 	/**
 	 * Returns the Redis session keys

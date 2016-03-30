@@ -399,6 +399,66 @@ class {}
 ```
 运行mvn package打jar包，done！
 
+
+### 8. linux部署redis cluster集群，并使用jedis客户端连接
+
+具体过程：
+    
+    开放端口：
+    vi /etc/sysconfig/iptables
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 21 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 8080 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 8081 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 7000 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 7001 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 7002 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 7003 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 7004 -j ACCEPT
+    -A INPUT -m state –state NEW -m tcp -p tcp –dport 7005 -j ACCEPT
+
+    /etc/init.d/iptables restart
+
+
+    安装redis3
+    wget http://download.redis.io/releases/redis-3.0.1.tar.gz
+    tar xf redis-3.0.1.tar.gz                       
+    cd redis-3.0.1
+    make && make install
+
+    修改配置
+    修改配置文件redis.conf中下面选项
+    port 7000
+    daemonize yes
+    cluster-enabled yes
+    cluster-config-file nodes.conf
+    cluster-node-timeout 5000
+    appendonly yes
+
+cd 进redis集群config文件目录
+    分别 redis-server redis.conf
+    进入redis安装目录
+    cd /data/cluster/7000
+    redis-server redis.conf
+    cd /data/cluster/7001
+    redis-server redis.conf
+    cd /data/cluster/7002
+    redis-server redis.conf
+    cd /data/cluster/7003
+    redis-server redis.conf
+    cd /data/cluster/7004
+    redis-server redis.conf
+    cd /data/cluster/7005
+    redis-server redis.conf
+
+    yum install ruby rubygems -y
+    gem install redis
+
+    cp redis-3.0.1/src/redis-trib.rb /usr/local/bin/redis-trib
+
+    redis-trib create --replicas 1 192.168.1.128:7000 192.168.1.128:7001 192.168.1.128:7002 192.168.1.128:7003 192.168.1.128:7004 192.168.1.128:7005
+
 #### 上传并启动
 连接sftp
 lcd 打开本地路径
