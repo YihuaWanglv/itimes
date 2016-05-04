@@ -9,7 +9,8 @@
     "bootstrap-css-only": "~3.2.0",
     "bootstrap": "~3.3.4",
     "jquery": "~2.2.0",
-    "jquery-validation": "~1.15.0"
+    "jquery-validation": "~1.15.0",
+    "Chart.js": "^2.1.0"
   },
   "resolutions": {
     "angular": "~1.2.26"

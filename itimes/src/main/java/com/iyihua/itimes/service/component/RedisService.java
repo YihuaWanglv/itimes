@@ -11,10 +11,10 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
-@Component
+//@Component
 public class RedisService {
 
-	@Autowired
+//	@Autowired
 	private JedisCluster jedisCluster;
 
 	private int expire = 0;

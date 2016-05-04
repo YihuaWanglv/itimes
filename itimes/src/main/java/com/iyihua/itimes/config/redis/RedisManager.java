@@ -11,9 +11,13 @@ import redis.clients.jedis.JedisPoolConfig;
 @Component
 public class RedisManager {
 	
-	private String host = "127.0.0.1";
+	private String host = "192.168.1.134";
 	
 	private int port = 6379;
+	
+//	private String host = "192.168.1.128";
+//	
+//	private int port = 7000;
 	
 	// 0 - never expire
 	private int expire = 0;

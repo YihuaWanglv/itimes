@@ -22,8 +22,8 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 	/**
 	 * shiro-redis的session对象前缀
 	 */
-//	@Autowired private RedisManager redisManager;
-	@Autowired private RedisService redisManager;
+	@Autowired private RedisManager redisManager;
+//	@Autowired private RedisService redisManager;
 	
 	/**
 	 * The Redis key prefix for the sessions 

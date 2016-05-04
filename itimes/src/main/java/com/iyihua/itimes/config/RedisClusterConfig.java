@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
-@Configuration
+//@Configuration
 public class RedisClusterConfig {
 
-	@Bean
+//	@Bean
 	public JedisCluster jedisCluster() {
 		Set<HostAndPort> set = new HashSet<>();
 		set.add(new HostAndPort("192.168.1.128", 7000));
