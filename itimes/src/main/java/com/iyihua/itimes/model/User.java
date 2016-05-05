@@ -38,6 +38,8 @@ public class User implements Serializable {
 	private Integer enable;
 	@Column()
 	private String code;
+	@Column
+	private long userConfigId;
 	public User() {
 		super();
 	}
@@ -139,6 +141,14 @@ public class User implements Serializable {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public long getUserConfigId() {
+		return userConfigId;
+	}
+
+	public void setUserConfigId(long userConfigId) {
+		this.userConfigId = userConfigId;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import com.iyihua.model.base.UserDTO;
+import com.iyihua.model.base.user.UserConfigJson;
 
 
 public interface UserRemote {
@@ -18,4 +19,6 @@ public interface UserRemote {
 	public UserDTO findUserByName(String username);
 	
 	public UserDTO updateUser(UserDTO user, Boolean isUpdateSelected) throws NoSuchAlgorithmException, InvalidKeySpecException;
+	
+	public UserConfigJson getUserConfigById(long id);
 }

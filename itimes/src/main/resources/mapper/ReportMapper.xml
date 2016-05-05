@@ -8,8 +8,34 @@
 		<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
 		<result column="durations" property="durations" jdbcType="DECIMAL" />
 	</resultMap>
+	<resultMap id="CategoryTimeReportMap" type="com.iyihua.model.base.report.CategoryTimeReport">
+		<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+		<result column="reportdate" property="reportdate" jdbcType="VARCHAR" />
+		<result column="durations" property="durations" jdbcType="DECIMAL" />
+	</resultMap>
 
 	<select id="reportCategory" resultMap="CategoryReportMap">
-		select category_id, category_name, sum(duration) as durations from item where user_id=1  group by category_name
+		select category_id,
+		category_name, sum(duration) as durations from item where user_id=1
+		group by category_name
+	</select>
+	<select id="reportCategoryTime" resultMap="CategoryTimeReportMap">
+		select a.*, b.durations
+		from (
+			select distinct category_name,tt.reportdate from item join 
+			(
+				select distinct concat(year(i.date),'-',month(i.date)) reportdate from item i where user_id=1
+			) tt
+			where user_id=1
+		) a
+		left join
+		(
+			select category_name, reportdate, sum(duration) durations from 
+			(
+				select concat(year(i.date),'-',month(i.date)) reportdate,i.* from item i where i.user_id=1
+			) t group by category_name,reportdate
+		) b
+		on a.category_name=b.category_name and a.reportdate=b.reportdate
+		order by a.category_name,a.reportdate;
 	</select>
 </mapper>

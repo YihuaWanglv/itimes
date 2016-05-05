@@ -9,19 +9,22 @@ import org.springframework.data.redis.core.script.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import util.PasswordSecureHash;
-
 import com.iyihua.itimes.mapper.user.UserXmlMapper;
 import com.iyihua.itimes.model.User;
 import com.iyihua.itimes.repository.UserRepository;
+import com.iyihua.itimes.repository.user.UserConfigRepository;
 import com.iyihua.model.base.UserDTO;
+import com.iyihua.model.base.user.UserConfigJson;
 import com.iyihua.remote.base.UserRemote;
+
+import util.PasswordSecureHash;
 
 @Service
 public class UserService implements UserRemote {
 
 	@Autowired private UserRepository userRepository;
 	@Autowired private UserXmlMapper userXmlMapper;
+//	@Autowired private UserConfigRepository userConfigRepository;
 	
 	@Override
 	public UserDTO findUserById(Long id) {
@@ -31,6 +34,7 @@ public class UserService implements UserRemote {
 		if (user != null) {
 			result = new UserDTO();
 			BeanUtils.copyProperties(user, result);
+//			UserConfig uc = userConfigRepository.findOne(user.getUserConfigId());
 		}
 		return result;
 	}
@@ -80,6 +84,11 @@ public class UserService implements UserRemote {
 			save = userRepository.save(save);
 		}
 		return user;
+	}
+
+	@Override
+	public UserConfigJson getUserConfigById(long id) {
+		return new UserConfigJson();
 	}
 
 	

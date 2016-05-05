@@ -18,6 +18,8 @@ public class UserDTO implements Serializable {
 	private Integer deleted;
 	private Integer enable;
 	private String code;
+	private long userConfigId;
+//	private 
 
 	private FieldExtend fieldExtend = new FieldExtend();
 
@@ -130,6 +132,14 @@ public class UserDTO implements Serializable {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	public long getUserConfigId() {
+		return userConfigId;
+	}
+
+	public void setUserConfigId(long userConfigId) {
+		this.userConfigId = userConfigId;
 	}
 
 	@Override
