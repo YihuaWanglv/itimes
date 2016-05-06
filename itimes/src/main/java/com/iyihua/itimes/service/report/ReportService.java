@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.iyihua.itimes.mapper.report.ReportMapper;
 import com.iyihua.model.base.report.CategoryReport;
 import com.iyihua.model.base.report.CategoryTimeReport;
+import com.iyihua.model.base.report.ReportData;
+import com.iyihua.model.base.report.ReportQuery;
 import com.iyihua.remote.base.report.ReportRemote;
 
 @Service
@@ -23,6 +25,16 @@ public class ReportService implements ReportRemote {
 	@Override
 	public List<CategoryTimeReport> reportCategoryTime() {
 		return reportMapper.reportCategoryTime();
+	}
+
+	@Override
+	public List<ReportData> reportSimple(ReportQuery query) {
+		return reportMapper.reportSimple(query);
+	}
+
+	@Override
+	public List<ReportData> reportWithTime(ReportQuery query) {
+		return reportMapper.reportWithTime(query);
 	}
 
 }

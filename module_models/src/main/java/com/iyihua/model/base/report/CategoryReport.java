@@ -6,7 +6,7 @@ public class CategoryReport {
 
 	private long categoryId;
 	private String categoryName;
-	private BigDecimal durations;
+	private BigDecimal durations = BigDecimal.ZERO;
 	public long getCategoryId() {
 		return categoryId;
 	}
