@@ -14,21 +14,21 @@ public interface ReportRemote {
 	public List<CategoryTimeReport> reportCategoryTime();
 
 	/**
-	 * ¸ù¾İGroupType×ö¼òµ¥µÄËùÓÃÊ±¼äÍ³¼Æ
-	 * 	type=0,±íÊ¾¸ù¾İcategoryÍ³¼Æ
-	 *  type=1,±íÊ¾¸ù¾İprojectÍ³¼Æ
-	 *  type=2,±íÊ¾¸ù¾İlocationÍ³¼Æ
+	 * æ ¹æ®GroupTypeåšç®€å•çš„æ‰€ç”¨æ—¶é—´ç»Ÿè®¡
+	 * 	type=0,è¡¨ç¤ºæ ¹æ®categoryç»Ÿè®¡
+	 *  type=1,è¡¨ç¤ºæ ¹æ®projectç»Ÿè®¡
+	 *  type=2,è¡¨ç¤ºæ ¹æ®locationç»Ÿè®¡
 	 * @param query
 	 * @return
 	 */
 	public List<ReportData> reportSimple(ReportQuery query);
 	
 	/**
-	 * ¸ù¾İGroupType×öÒÔÊ±¼ä·Ö×éµÄËùÓÃÊ±¼äÍ³¼Æ
-	 * 	type=0,±íÊ¾¸ù¾İcategoryÍ³¼Æ
-	 *  type=1,±íÊ¾¸ù¾İprojectÍ³¼Æ
-	 *  type=2,±íÊ¾¸ù¾İlocationÍ³¼Æ
-	 * Ä¬ÈÏµÄÊ±¼ä·Ö×éÎ¬¶ÈÎªmonth
+	 * æ ¹æ®GroupTypeåšä»¥æ—¶é—´åˆ†ç»„çš„æ‰€ç”¨æ—¶é—´ç»Ÿè®¡
+	 * 	type=0,è¡¨ç¤ºæ ¹æ®categoryç»Ÿè®¡
+	 *  type=1,è¡¨ç¤ºæ ¹æ®projectç»Ÿè®¡
+	 *  type=2,è¡¨ç¤ºæ ¹æ®locationç»Ÿè®¡
+	 * é»˜è®¤çš„æ—¶é—´åˆ†ç»„ç»´åº¦ä¸ºmonth
 	 * @param query
 	 * @return
 	 */

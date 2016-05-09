@@ -95,11 +95,11 @@ public class UserService implements UserRemote {
 		UserConfigJson config = new UserConfigJson();
 		
 		List<ReportConfig> reportConfigs = new ArrayList<ReportConfig>();
-		reportConfigs.add(new ReportConfig.Builder("category").enabled(1).type("bar").title("Ã¿¸ö·ÖÀàËùÓÃÊ±¼ä").build());
-		reportConfigs.add(new ReportConfig.Builder("categoryTime").enabled(1).type("line").muti(1).title("¸÷¸ö·ÖÀàÔÚÃ¿ÔÂ·İµÄÊ±¼ä").build());
-		reportConfigs.add(new ReportConfig.Builder("project").enabled(1).type("bar").title("¸÷¸öÏîÄ¿ËùÓÃÊ±¼ä").build());
-		reportConfigs.add(new ReportConfig.Builder("projectTime").enabled(1).type("line").muti(1).title("¸÷¸öÏîÄ¿ÔÚÃ¿¸öÔÂ·İËùÓÃÊ±¼ä").build());
-		reportConfigs.add(new ReportConfig.Builder("location").enabled(1).type("bar").title("¸÷¸öµØµãËùÓÃÊ±¼ä").build());
+		reportConfigs.add(new ReportConfig.Builder("category").enabled(1).type("bar").title("æ¯ä¸ªåˆ†ç±»æ‰€ç”¨æ—¶é—´").build());
+		reportConfigs.add(new ReportConfig.Builder("categoryTime").enabled(1).type("line").muti(1).title("å„ä¸ªåˆ†ç±»åœ¨æ¯æœˆä»½çš„æ—¶é—´").build());
+		reportConfigs.add(new ReportConfig.Builder("project").enabled(1).type("bar").title("å„ä¸ªé¡¹ç›®æ‰€ç”¨æ—¶é—´").build());
+		reportConfigs.add(new ReportConfig.Builder("projectTime").enabled(1).type("line").muti(1).title("å„ä¸ªé¡¹ç›®åœ¨æ¯ä¸ªæœˆä»½æ‰€ç”¨æ—¶é—´").build());
+		reportConfigs.add(new ReportConfig.Builder("location").enabled(1).type("bar").title("å„ä¸ªåœ°ç‚¹æ‰€ç”¨æ—¶é—´").build());
 		reportConfigs.add(new ReportConfig.Builder("locationTime").enabled(0).build());
 		config.setReportConfigs(reportConfigs);
 		
