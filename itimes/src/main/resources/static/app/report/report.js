@@ -22,5 +22,12 @@ $(function() {
 			}
 		}
 	});
+	$('.btn-chart-config').on('click', function(){
+		if ($('.form-edit').hasClass('hidden')) {
+			$('.form-edit').removeClass('hidden');
+		} else {
+			$('.form-edit').addClass('hidden');
+		}
+	});
 
 });

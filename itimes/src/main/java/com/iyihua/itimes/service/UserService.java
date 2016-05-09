@@ -2,8 +2,6 @@ package com.iyihua.itimes.service;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +9,14 @@ import org.springframework.data.redis.core.script.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import com.iyihua.itimes.component.tools.singletonManager;
 import com.iyihua.itimes.mapper.user.UserXmlMapper;
 import com.iyihua.itimes.model.User;
+import com.iyihua.itimes.model.user.UserConfig;
 import com.iyihua.itimes.repository.UserRepository;
 import com.iyihua.itimes.repository.user.UserConfigRepository;
 import com.iyihua.model.base.UserDTO;
-import com.iyihua.model.base.report.ReportConfig;
-import com.iyihua.model.base.user.UserConfigJson;
+import com.iyihua.model.base.user.UserConfigObject;
 import com.iyihua.remote.base.UserRemote;
 
 import util.PasswordSecureHash;
@@ -27,7 +26,7 @@ public class UserService implements UserRemote {
 
 	@Autowired private UserRepository userRepository;
 	@Autowired private UserXmlMapper userXmlMapper;
-//	@Autowired private UserConfigRepository userConfigRepository;
+	@Autowired private UserConfigRepository userConfigRepository;
 	
 	@Override
 	public UserDTO findUserById(Long id) {
@@ -90,20 +89,19 @@ public class UserService implements UserRemote {
 	}
 
 	@Override
-	public UserConfigJson getUserConfigById(long id) {
+	public UserConfigObject getUserConfigById(long id) {
 		
-		UserConfigJson config = new UserConfigJson();
+		UserConfig userConfig = userConfigRepository.findOne(id);
+		Assert.notNull(userConfig.getDetail(), "There is no config of this user!");
 		
-		List<ReportConfig> reportConfigs = new ArrayList<ReportConfig>();
-		reportConfigs.add(new ReportConfig.Builder("category").enabled(1).type("bar").title("每个分类所用时间").build());
-		reportConfigs.add(new ReportConfig.Builder("categoryTime").enabled(1).type("line").muti(1).title("各个分类在每月份的时间").build());
-		reportConfigs.add(new ReportConfig.Builder("project").enabled(1).type("bar").title("各个项目所用时间").build());
-		reportConfigs.add(new ReportConfig.Builder("projectTime").enabled(1).type("line").muti(1).title("各个项目在每个月份所用时间").build());
-		reportConfigs.add(new ReportConfig.Builder("location").enabled(1).type("bar").title("各个地点所用时间").build());
-		reportConfigs.add(new ReportConfig.Builder("locationTime").enabled(0).build());
-		config.setReportConfigs(reportConfigs);
-		
-		return config;
+		return singletonManager.getSimpleGson().fromJson(userConfig.getDetail(), UserConfigObject.class);
+	}
+
+	@Override
+	public void saveUserConfig(long userId, UserConfigObject uco) {
+		UserConfig uc = userConfigRepository.findOne(userId);
+		uc.setDetail(singletonManager.getSimpleGson().toJson(uco));
+		userConfigRepository.save(uc);
 	}
 
 	

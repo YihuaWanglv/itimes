@@ -8,6 +8,7 @@ shiro:
     "/view/sign-in": anon
     "/sign-up": anon
     "/user/**": anon
+    "/view/report.html": authc
     "/view/**": anon
     "/css/**": anon
     "/static/**": anon

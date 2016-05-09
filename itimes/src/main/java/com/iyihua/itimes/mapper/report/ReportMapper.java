@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.iyihua.model.base.report.CategoryReport;
-import com.iyihua.model.base.report.CategoryTimeReport;
 import com.iyihua.model.base.report.ReportData;
 import com.iyihua.model.base.report.ReportQuery;
 
@@ -13,9 +11,9 @@ import com.iyihua.model.base.report.ReportQuery;
 @Component
 public interface ReportMapper {
 
-	public List<CategoryReport> reportCategory();
-	
-	public List<CategoryTimeReport> reportCategoryTime();
+//	public List<CategoryReport> reportCategory();
+//	
+//	public List<CategoryTimeReport> reportCategoryTime();
 	
 	/**
 	 * 根据GroupType做简单的所用时间统计

@@ -1,7 +1,11 @@
 package com.iyihua.model.base.report;
 
-public class ReportConfig {
+import java.io.Serializable;
 
+public class ReportConfig implements Serializable {
+
+	private static final long serialVersionUID = -2926494650507649343L;
+	
 	private String key;
 	private int enabled = 1;
 	private String type = "bar";

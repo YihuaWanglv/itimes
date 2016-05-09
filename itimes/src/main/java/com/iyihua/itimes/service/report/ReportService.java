@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iyihua.itimes.mapper.report.ReportMapper;
-import com.iyihua.model.base.report.CategoryReport;
-import com.iyihua.model.base.report.CategoryTimeReport;
 import com.iyihua.model.base.report.ReportData;
 import com.iyihua.model.base.report.ReportQuery;
 import com.iyihua.remote.base.report.ReportRemote;
@@ -17,15 +15,15 @@ public class ReportService implements ReportRemote {
 
 	@Autowired private ReportMapper reportMapper;
 
-	@Override
-	public List<CategoryReport> reportCategory() {
-		return reportMapper.reportCategory();
-	}
-
-	@Override
-	public List<CategoryTimeReport> reportCategoryTime() {
-		return reportMapper.reportCategoryTime();
-	}
+//	@Override
+//	public List<CategoryReport> reportCategory() {
+//		return reportMapper.reportCategory();
+//	}
+//
+//	@Override
+//	public List<CategoryTimeReport> reportCategoryTime() {
+//		return reportMapper.reportCategoryTime();
+//	}
 
 	@Override
 	public List<ReportData> reportSimple(ReportQuery query) {

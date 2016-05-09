@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iyihua.itimes.component.security.LoginSessionManager;
-import com.iyihua.model.base.report.CategoryTimeReport;
 import com.iyihua.model.base.report.ReportData;
 import com.iyihua.model.base.report.ReportQuery;
 import com.iyihua.model.component.JsonObject;
@@ -33,40 +32,6 @@ public class ReportController {
 	@Autowired
 	private LoginSessionManager loginSessionManager;
 
-//	@RequestMapping(value = "/category", method = RequestMethod.GET)
-//	public List<CategoryReport> showCategoryReport() {
-//		// Long userId = loginSessionManager.getSessionUserId();
-//		List<CategoryReport> result = reportService.reportCategory();
-//		return result;
-//	}
-
-	@RequestMapping(value = "/category/time", method = RequestMethod.GET)
-	public JsonObject showCategoryTimeReport() {
-		JsonObject json = new JsonObject();
-		List<CategoryTimeReport> result = reportService.reportCategoryTime();
-		ReportDataSet dataset = new ReportDataSet();
-		Set<String> labels = new LinkedHashSet<String>();
-		Map<String, List<BigDecimal>> report = new HashMap<String, List<BigDecimal>>();
-		for (CategoryTimeReport ctr : result) {
-			String date = ctr.getReportdate();
-			String category = ctr.getCategoryName();
-			BigDecimal durations = ctr.getDurations();
-			labels.add(date);
-			List<BigDecimal> list = null;
-			if (report.get(category) == null) {
-				list = new ArrayList<BigDecimal>();
-			} else {
-				list = report.get(category);
-			}
-			list.add(durations);
-			report.put(category, list);
-		}
-		dataset.setLabels(labels);
-		dataset.setDataset(report);
-		json.setData(dataset);
-		return json;
-	}
-	
 	@RequestMapping(value = "/{type}", method = RequestMethod.GET)
 	public JsonObject report(@PathVariable String type) {
 		JsonObject json = new JsonObject();
@@ -114,5 +79,5 @@ public class ReportController {
 		json.setData(dataset);
 		return json;
 	}
-
+	
 }

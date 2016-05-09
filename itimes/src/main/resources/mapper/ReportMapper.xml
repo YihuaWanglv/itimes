@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iyihua.itimes.mapper.report.ReportMapper">
-	<resultMap id="CategoryReportMap" type="com.iyihua.model.base.report.CategoryReport">
+	<!-- <resultMap id="CategoryReportMap" type="com.iyihua.model.base.report.CategoryReport">
 		<id column="category_id" property="categoryId" jdbcType="BIGINT" />
 		<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
 		<result column="durations" property="durations" jdbcType="DECIMAL" />
-	</resultMap>
+	</resultMap> -->
 	<resultMap id="CategoryTimeReportMap" type="com.iyihua.model.base.report.CategoryTimeReport">
 		<result column="category_name" property="categoryName" jdbcType="VARCHAR" />
 		<result column="reportdate" property="reportdate" jdbcType="VARCHAR" />
@@ -21,6 +21,7 @@
 		<result column="durations" property="durations" jdbcType="DECIMAL" />
 	</resultMap>
 
+	<!-- 
 	<select id="reportCategory" resultMap="CategoryReportMap">
 		select category_id,
 		category_name, sum(duration) as durations from item where user_id=1
@@ -44,7 +45,8 @@
 		) b
 		on a.category_name=b.category_name and a.reportdate=b.reportdate
 		order by a.category_name,a.reportdate;
-	</select>
+	</select> 
+	-->
 	
 	
 	<select id="reportSimple" resultMap="ReportResultMap" parameterType="com.iyihua.model.base.report.ReportQuery">

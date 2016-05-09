@@ -9,9 +9,9 @@ import com.iyihua.model.base.report.ReportQuery;
 
 public interface ReportRemote {
 
-	public List<CategoryReport> reportCategory();
-	
-	public List<CategoryTimeReport> reportCategoryTime();
+//	public List<CategoryReport> reportCategory();
+//	
+//	public List<CategoryTimeReport> reportCategoryTime();
 
 	/**
 	 * 根据GroupType做简单的所用时间统计

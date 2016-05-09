@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.iyihua.model.base.report.ReportConfig;
 
-public class UserConfigJson implements Serializable {
+public class UserConfigObject implements Serializable {
 
 	private static final long serialVersionUID = 1507401697090937031L;
 

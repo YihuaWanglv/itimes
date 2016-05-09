@@ -140,4 +140,7 @@ div.ui-select-container .btn-default {
   height: 60px;
   clear:both;
   padding-top:20px;
-} 
+}
+.form-inline-checkbox {
+	margin-top: 7px !important;
+}
