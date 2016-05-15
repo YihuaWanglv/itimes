@@ -12,4 +12,9 @@
     <string name="menu2">Tab Count 2</string>
     <string name="menu3">Tab Count 3</string>
     <string name="menu4">Tab Count 4</string>
+
+    <string name="menu_items">My Items</string>
+    <string name="menu_config">Config Center</string>
+    <string name="menu_report">Item Report</string>
+    <string name="menu_about">About</string>
 </resources>

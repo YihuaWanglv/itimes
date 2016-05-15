@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.iyihua.timeitem.component.fragment.TimeItemFragmentAdapter;
 import com.iyihua.timeitem.frame.nav.ContentFragmentAdapter;
 import com.iyihua.timeitem.frame.nav.SlidingTabLayout;
 
@@ -50,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
         setUpNavigationDrawer();
 
         // Initial tab count
-        setTabs(4);
-        mNavigationView.setCheckedItem(R.id.navigation_item_4);
+//        setTabs(4);
+        initPageItem();
+        mNavigationView.setCheckedItem(R.id.navigation_items);
 
     }
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             assert actionBar != null;
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setSubtitle(getString(R.string.subtitle));
+//            actionBar.setSubtitle(getString(R.string.subtitle));
             actionBar.setDisplayShowTitleEnabled(true);
         } catch (Exception ignored) {
         }
@@ -73,27 +75,31 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(MenuItem menuItem) {
-                    menuItem.setChecked(true);
-                    switch (menuItem.getItemId()) {
-                        case R.id.navigation_item_1:
-                            mCurrentSelectedPosition = 0;
-                            break;
-                        case R.id.navigation_item_2:
-                            mCurrentSelectedPosition = 1;
-                            break;
-                        case R.id.navigation_item_3:
-                            mCurrentSelectedPosition = 2;
-                            break;
-                        case R.id.navigation_item_4:
-                            mCurrentSelectedPosition = 3;
-                            break;
-                    }
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                switch (menuItem.getItemId()) {
+                    case R.id.navigation_items:
+                        mCurrentSelectedPosition = 0;
+                        initPageItem();
+//                        setTabs(1);
+                        break;
+                    case R.id.navigation_config:
+                        mCurrentSelectedPosition = 1;
+                        setTabs(4);
+                        break;
+                    case R.id.navigation_report:
+                        mCurrentSelectedPosition = 2;
+                        setTabs(3);
+                        break;
+                    case R.id.navigation_about:
+                        mCurrentSelectedPosition = 3;
+                        setTabs(1);
+                        break;
+                }
 
-            setTabs(mCurrentSelectedPosition + 1);
-            mDrawerLayout.closeDrawer(mNavigationView);
-            return true;
+                mDrawerLayout.closeDrawer(mNavigationView);
+                return true;
             }
         });
 
@@ -114,6 +120,28 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+    }
+
+    public void initPageItem() {
+        //TimeItemFragmentAdapter
+        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        TimeItemFragmentAdapter adapterViewPager = new TimeItemFragmentAdapter(getSupportFragmentManager(), this);
+        vpPager.setAdapter(adapterViewPager);
+
+        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        slidingTabLayout.setTextColor(getResources().getColor(R.color.tab_text_color));
+        slidingTabLayout.setTextColorSelected(getResources().getColor(R.color.tab_text_color_selected));
+        slidingTabLayout.setDistributeEvenly();
+        slidingTabLayout.setViewPager(vpPager);
+        slidingTabLayout.setTabSelected(0);
+
+        // Change indicator color
+        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.tab_indicator);
+            }
+        });
     }
 
     public void setTabs(int count) {

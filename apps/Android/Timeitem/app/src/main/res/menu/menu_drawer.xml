@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navigation_item_1"
+            android:id="@+id/navigation_items"
             android:checked="true"
             android:icon="@drawable/ic_arrow"
-            android:title="@string/menu1"/>
+            android:title="@string/menu_items"/>
         <item
-            android:id="@+id/navigation_item_2"
+            android:id="@+id/navigation_config"
             android:icon="@drawable/ic_arrow"
-            android:title="@string/menu2"/>
+            android:title="@string/menu_config"/>
         <item
-            android:id="@+id/navigation_item_3"
+            android:id="@+id/navigation_report"
             android:icon="@drawable/ic_arrow"
-            android:title="@string/menu3"/>
+            android:title="@string/menu_report"/>
         <item
-            android:id="@+id/navigation_item_4"
+            android:id="@+id/navigation_about"
             android:icon="@drawable/ic_arrow"
-            android:title="@string/menu4"/>
+            android:title="@string/menu_about"/>
     </group>
 </menu>
